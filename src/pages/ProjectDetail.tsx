@@ -90,6 +90,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailProps> = ({project, onBack
   const sections = project.sections || [];
   const primaryItems = items.slice(0, 6);
   const secondaryItems = items.slice(6);
+  const totalSectionItems = sections.reduce((sum, section) => sum + section.items.length, 0);
 
   return (
     <div className="space-y-12 pb-12">
@@ -115,6 +116,16 @@ export const ProjectDetailPage: React.FC<ProjectDetailProps> = ({project, onBack
 
         <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm">
           <p className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-400">先看这三个判断</p>
+          <div className="mt-5 grid grid-cols-2 gap-4">
+            <div className="rounded-[24px] bg-slate-50 px-5 py-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">二级分类</p>
+              <p className="mt-2 text-3xl font-bold text-slate-900">{sections.length || '-'}</p>
+            </div>
+            <div className="rounded-[24px] bg-slate-50 px-5 py-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">服务项目</p>
+              <p className="mt-2 text-3xl font-bold text-slate-900">{items.length || totalSectionItems}</p>
+            </div>
+          </div>
           <div className="mt-5 space-y-4">
             {[
               {label: '适合谁', value: note.suitable},
@@ -138,7 +149,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailProps> = ({project, onBack
             </div>
             <div>
               <h2 className="text-3xl font-bold text-slate-900">这类服务的二级分类</h2>
-              <p className="mt-1 text-lg text-slate-500">先把结构看懂，再进入具体项目，会比直接看大串项目名轻松得多。</p>
+              <p className="mt-1 text-lg text-slate-500">这里按二级分类完整展开，不再只显示代表项，方便你直接核对全部服务内容。</p>
             </div>
           </div>
 
@@ -150,16 +161,13 @@ export const ProjectDetailPage: React.FC<ProjectDetailProps> = ({project, onBack
                   <span className="rounded-full bg-white px-3 py-1 text-sm text-slate-400">{section.items.length} 项</span>
                 </div>
                 <div className="mt-5 space-y-3">
-                  {section.items.slice(0, 8).map(item => (
+                  {section.items.map(item => (
                     <div key={item} className="flex items-start gap-3 rounded-2xl border border-white bg-white px-4 py-3">
                       <div className="mt-2 h-2.5 w-2.5 rounded-full bg-brand-primary" />
                       <p className="text-base leading-7 text-slate-700">{item}</p>
                     </div>
                   ))}
                 </div>
-                {section.items.length > 8 && (
-                  <p className="mt-4 text-sm text-slate-400">以及另外 {section.items.length - 8} 项同类项目。</p>
-                )}
               </div>
             ))}
           </div>

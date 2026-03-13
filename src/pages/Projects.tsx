@@ -133,6 +133,8 @@ interface ProjectsPageProps {
 
 export const ProjectsPage: React.FC<ProjectsPageProps> = ({projects, onSelectProject}) => {
   const [activeGroup, setActiveGroup] = useState(groupConfigs[0].id);
+  const totalItems = projects.reduce((sum, project) => sum + (project.subItems?.length || 0), 0);
+  const totalSections = projects.reduce((sum, project) => sum + (project.sections?.length || 0), 0);
 
   const groups = groupConfigs
     .map(group => ({
@@ -163,11 +165,21 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({projects, onSelectPro
           </div>
 
           <div className="rounded-[32px] border border-slate-200 bg-white p-7 shadow-sm">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">建议这样看</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">导览覆盖</p>
+            <div className="mt-5 grid grid-cols-2 gap-4">
+              <div className="rounded-[24px] bg-slate-50 px-5 py-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">业务模块</p>
+                <p className="mt-2 text-3xl font-bold text-slate-900">{projects.length}</p>
+              </div>
+              <div className="rounded-[24px] bg-slate-50 px-5 py-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">服务项目</p>
+                <p className="mt-2 text-3xl font-bold text-slate-900">{totalItems}</p>
+              </div>
+            </div>
             <div className="mt-5 space-y-4">
               {[
-                '先看自己更像检查、治疗、修复还是正畸需求',
-                '每个模块里再看二级分类，不用一上来就看全部明细',
+                `共整理 ${totalSections} 个二级分类，先按模块找方向，再看明细会更轻松`,
+                '进入详情后会展开该模块下的完整服务项目，不再只看代表项',
                 '如果还不确定从哪开始，可以先点最接近自己症状的模块',
               ].map((item, index) => (
                 <div key={item} className="flex items-start gap-4">
@@ -224,6 +236,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({projects, onSelectPro
                 const Icon = iconMap[project.icon] || Sparkles;
                 const note = projectNotes[project.id] || projectNotes['other-care'];
                 const visibleSections = project.sections?.slice(0, project.id === 'orthodontics' ? 5 : 3) || [];
+                const totalProjectItems = project.subItems?.length || 0;
 
                 return (
                   <motion.article
@@ -245,7 +258,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({projects, onSelectPro
                               {(project.sections?.length || 0)} 个二级分类
                             </span>
                             <span className="rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-500">
-                              {(project.subItems?.length || 0)} 项内容
+                              {totalProjectItems} 项服务
                             </span>
                           </div>
                           <p className="max-w-2xl text-lg leading-8 text-slate-500">{project.description}</p>
@@ -277,8 +290,11 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({projects, onSelectPro
                     </div>
 
                     <div className="flex h-full flex-col rounded-[28px] bg-slate-50 p-6">
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center justify-between gap-4">
                         <h4 className="text-lg font-bold text-slate-900">优先看这些二级分类</h4>
+                        <span className="rounded-full bg-white px-3 py-1 text-sm font-semibold text-slate-500">
+                          已覆盖全部 {totalProjectItems} 项
+                        </span>
                       </div>
 
                       <div className="mt-5 space-y-3">
@@ -291,7 +307,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({projects, onSelectPro
                               </div>
                               <span className="text-sm text-slate-400">{section.items.length} 项</span>
                             </div>
-                            <p className="mt-3 text-sm leading-7 text-slate-500">{section.items.slice(0, 2).join(' / ')}</p>
+                            <p className="mt-3 text-sm leading-7 text-slate-500">{section.items.slice(0, 3).join(' / ')}</p>
                           </div>
                         ))}
                       </div>

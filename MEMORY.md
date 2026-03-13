@@ -153,7 +153,10 @@
 - Pages 发布方式：`GitHub Actions`
 - 自动部署工作流：`.github/workflows/deploy-pages.yml`
 - 线上地址：`https://wesleylwh.github.io/heyue_dental/`
-- PWA 已配置：
+- 本地开发端口固定：`3000`
+  - `npm run dev` 使用 `--strictPort`
+  - 如果 `3000` 被占用，应直接报错并先清理占用进程，不允许静默切到 `3001/3002`
+  - PWA 已配置：
   - `public/manifest.webmanifest`
   - `public/sw.js`
   - `public/icons/*`
@@ -171,6 +174,10 @@
 - 已在服务项目数据层加入二级分类 `sections`
 - 已把导入脚本改为按业务模块和二级分类生成 `public/services.json`
 - 已将首页服务模块概览同步改成新分类口径
+- 已把“服务项目导览”补充为完整覆盖视角：
+  - 总览页展示业务模块数、二级分类数、服务项目总数
+  - 模块卡片明确提示“已覆盖全部 X 项”
+  - 服务详情页按二级分类完整展开全部项目，不再只截取前几项
 
 ## Latest Service Optimization Snapshot
 
@@ -199,6 +206,10 @@
   - 讲“用户怎么找方向”
   - 不讲“这次优化了什么”
   - 不用内部产品语言去解释页面结构
+- 服务项目完整性规则：
+  - 数据层必须完整覆盖 Excel 导入项目
+  - 展示层不能让用户误以为“只有代表项”
+  - 总览页可做摘要，但详情页应能看到该模块下完整服务项目
 
 ## Ongoing Update Rule
 
@@ -208,6 +219,10 @@
   - 为什么改
   - 当前页面风格或结构规则有没有变化
   - 是否影响部署、PWA 或内容展示策略
+- 从现在开始，每次完成代码修改后，默认必须执行一次打包：
+  - 命令：`npm run build`
+  - 目的：确保 `dist/` 始终是最新可发布版本，便于同步到 GitHub Pages
+  - 这条规则适用于页面改动、服务项目数据改动、导入脚本改动，以及任何会影响线上展示结果的更新
 - 完成代码修改后，默认一起提交并 push，保持仓库状态和 Memory 同步
 
 ## Next Suggested Targets
