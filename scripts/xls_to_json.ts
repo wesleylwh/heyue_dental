@@ -42,10 +42,6 @@ const toNumber = (v: unknown): number | undefined => {
 };
 
 const formatItem = (item: ServiceItem): string => {
-  if (typeof item.price === 'number') {
-    const unit = item.unit ? `/${item.unit}` : '';
-    return `${item.name} ¥${item.price}${unit}`;
-  }
   return item.name;
 };
 
@@ -83,7 +79,7 @@ function main() {
 
   const byId = new Map<string, Project>();
   for (const p of DEFAULT_PROJECTS as Project[]) {
-    byId.set(p.id, { ...p, subItems: p.subItems ? [...p.subItems] : [] });
+    byId.set(p.id, { ...p, priceRange: '', subItems: p.subItems ? [...p.subItems] : [] });
   }
 
   const general: Project = {
@@ -92,7 +88,7 @@ function main() {
     description: '按收费项目明细展示。',
     icon: 'Stethoscope',
     category: 'health',
-    priceRange: '详见明细',
+    priceRange: '',
     subItems: [],
   };
 

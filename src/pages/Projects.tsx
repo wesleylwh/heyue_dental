@@ -102,12 +102,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ projects, onSelectPr
                     </motion.button>
                   ))}
                 </div>
-
-                <div className="bg-slate-50 p-8 rounded-[40px] flex items-center justify-between">
-                  <div className="space-y-1">
-                    <p className="text-slate-500 font-medium">参考价格</p>
-                    <p className="text-3xl font-bold text-brand-primary">{project.priceRange}</p>
-                  </div>
+                <div className="bg-slate-50 p-8 rounded-[40px] flex items-center justify-end">
                   <button 
                     onClick={() => onSelectProject(project.id)}
                     className="bg-white text-brand-primary px-8 py-3 rounded-2xl font-bold shadow-sm hover:shadow-md transition-all"

@@ -11,11 +11,30 @@ import { PROJECTS } from './constants';
 import { QRModal } from './components/QRModal';
 import type { Project } from './types';
 
+const PRICE_PATTERN = /\s*[¥￥]\s*[\d.,]+(?:\s*起)?(?:\/\S+)?/g;
+
+const stripPriceText = (value: string) => value.replace(PRICE_PATTERN, '').replace(/\s+/g, ' ').trim();
+
+const sanitizeProject = (project: Project): Project => ({
+  ...project,
+  priceRange: '',
+  subItems: project.subItems?.map(stripPriceText),
+  details: project.details
+    ? {
+        ...project.details,
+        materials: project.details.materials?.map(material => ({
+          ...material,
+          price: undefined,
+        })),
+      }
+    : undefined,
+});
+
 export default function App() {
   const [activeTab, setActiveTab] = useState('home');
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
   const [isQRModalOpen, setIsQRModalOpen] = useState(false);
-  const [projectsData, setProjectsData] = useState<Project[]>(PROJECTS);
+  const [projectsData, setProjectsData] = useState<Project[]>(PROJECTS.map(sanitizeProject));
 
   const openConsultation = () => setIsQRModalOpen(true);
 
@@ -29,7 +48,7 @@ export default function App() {
       .then((data: unknown) => {
         if (Array.isArray(data) && data.length > 0) {
           const valid = data.every(d => typeof d?.id === 'string' && typeof d?.title === 'string');
-          if (valid) setProjectsData(data as Project[]);
+          if (valid) setProjectsData((data as Project[]).map(sanitizeProject));
         }
       })
       .catch(() => {

@@ -114,12 +114,6 @@ export const ProjectDetailPage: React.FC<ProjectDetailProps> = ({ project, onBac
                       </div>
                       <p className="text-slate-500 text-lg italic">{m.warranty}</p>
                     </div>
-                    {m.price && (
-                      <div className="text-right">
-                        <p className="text-3xl font-bold text-brand-primary">{m.price}</p>
-                        <p className="text-sm text-slate-400">透明一口价</p>
-                      </div>
-                    )}
                   </div>
                   <p className="text-slate-600 text-lg leading-relaxed pt-4 border-t border-slate-50">
                     {m.description}
