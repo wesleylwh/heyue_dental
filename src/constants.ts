@@ -35,8 +35,9 @@ export const PROJECTS: Project[] = [
     priceRange: '',
     subItems: ['普通门诊诊查费', '口腔检查', '影像检查', '治疗设计'],
     sections: [
-      {id: 'diagnosis-basic', title: '门诊诊查', items: ['普通门诊诊查费', '全口牙病系统检查与治疗设计']},
-      {id: 'diagnosis-imaging', title: '影像与测量', items: ['口腔X线一次成像', 'CT / CBCT / 曲面体层成像']},
+      {id: 'diagnosis-basic', title: '门诊诊查与治疗设计', items: ['普通门诊诊查费', '全口牙病系统检查与治疗设计']},
+      {id: 'diagnosis-functional', title: '咬合与功能检查', items: ['咬合检查', '颌力测量检查', '下颌运动检查']},
+      {id: 'diagnosis-imaging', title: '影像与专项检查', items: ['口腔X线一次成像(RVG)', 'CT / CBCT / 曲面体层成像', '牙髓活力检查']},
     ],
   },
   {
@@ -48,8 +49,9 @@ export const PROJECTS: Project[] = [
     priceRange: '',
     subItems: ['洁治', '龈下刮治', '牙周固定', '根面平整'],
     sections: [
-      {id: 'periodontal-cleaning', title: '洁治与刮治', items: ['洁治', '龈下刮治', '超声根面平整术']},
-      {id: 'periodontal-gum', title: '牙龈与牙周处理', items: ['牙龈翻瓣术', '牙龈切除术', '牙周固定']},
+      {id: 'periodontal-cleaning', title: '洁牙与基础处理', items: ['洁治', '牙面光洁术', '牙龈保护剂塞治']},
+      {id: 'periodontal-root', title: '刮治与根面处理', items: ['龈下刮治', '龈下刮治(后牙)', '根面平整术']},
+      {id: 'periodontal-gum', title: '牙龈与牙周手术', items: ['牙龈翻瓣术', '牙龈切除术', '牙周固定']},
     ],
   },
   {
@@ -62,6 +64,7 @@ export const PROJECTS: Project[] = [
     subItems: ['前牙拔除术', '阻生牙拔除术', '口内脓肿切开引流术', '口腔活检术'],
     sections: [
       {id: 'surgery-extraction', title: '拔牙类', items: ['前牙拔除术', '复杂牙拔除术', '阻生牙拔除术']},
+      {id: 'surgery-wound', title: '创面与骨面处理', items: ['拔牙创面搔刮术', '牙槽骨修整术', '阻生智齿龈瓣整形术']},
       {id: 'surgery-oral', title: '口腔外科处置', items: ['口内脓肿切开引流术', '口腔活检术', '颞下颌关节复位']},
     ],
   },
@@ -119,15 +122,15 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'ortho-support',
-    title: '正畸检查 / 复诊 / 辅助项目',
-    description: '将正畸检查、复诊处置和辅助性项目单独归类，更利于理解。',
+    title: '正畸检查 / 正畸复诊 / 正畸辅助项目',
+    description: '把正畸检查、复诊处置和辅助性项目单独归类，避免混进正式疗程。',
     icon: 'Stethoscope',
     category: 'ortho',
     priceRange: '',
     subItems: ['带环制备', '固定矫治器复诊处置', '拆除固定装置', '调颌'],
     sections: [
-      {id: 'ortho-support-check', title: '检查与制备', items: ['带环制备', '颌导板制备', '错颌畸形初检']},
-      {id: 'ortho-support-follow', title: '复诊与辅助', items: ['固定矫治器复诊处置', '拆除固定装置', '调颌']},
+      {id: 'ortho-support-check', title: '正畸检查与制备', items: ['带环制备', '颌导板制备', '外科引导合板']},
+      {id: 'ortho-support-follow', title: '正畸复诊与辅助处置', items: ['固定矫治器复诊处置', '拆除固定装置', '调颌']},
     ],
   },
   {
@@ -137,10 +140,13 @@ export const PROJECTS: Project[] = [
     icon: 'Smile',
     category: 'ortho',
     priceRange: '',
-    subItems: ['乳牙期正畸', '替牙期正畸', '恒牙期正畸', '正畸保持器治疗'],
+    subItems: ['乳牙期正畸', '替牙期正畸', '恒牙期正畸', '特殊正畸', '正畸保持器治疗'],
     sections: [
-      {id: 'orthodontics-early', title: '乳牙期 / 替牙期', items: ['乳牙期安氏I类错颌正畸治疗', '替牙期安氏I类错颌活动矫治器正畸治疗']},
-      {id: 'orthodontics-late', title: '恒牙期 / 保持', items: ['恒牙期安氏I类错颌固定矫治器正畸治疗', '正畸保持器治疗']},
+      {id: 'orthodontics-primary', title: '乳牙期正畸', items: ['乳牙期安氏I类错颌正畸治疗']},
+      {id: 'orthodontics-mixed', title: '替牙期正畸', items: ['替牙期安氏I类错颌活动矫治器正畸治疗']},
+      {id: 'orthodontics-permanent', title: '恒牙期正畸', items: ['恒牙期安氏I类错颌固定矫治器正畸治疗']},
+      {id: 'orthodontics-special', title: '特殊正畸', items: ['牙周病伴错颌畸形活动矫治器正畸治疗']},
+      {id: 'orthodontics-retention', title: '正畸保持', items: ['正畸保持器治疗']},
     ],
   },
   {

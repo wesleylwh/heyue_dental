@@ -72,15 +72,15 @@ const projectNotes: Record<
     tags: ['活动义齿', '维修调整', '加工加改'],
   },
   'ortho-support': {
-    summary: '正畸检查、复诊和辅助项目不再混进正式疗程里。',
+    summary: '正畸检查、复诊和辅助项目单独成组，不再混进正式疗程里。',
     audience: '已经在做正畸，或正在做正畸前准备的人。',
-    emphasis: '让正畸治疗本体和辅助处置拆开，结构更清楚。',
-    tags: ['复诊处置', '检查制备', '辅助项目'],
+    emphasis: '让正畸检查、正畸复诊和正式治疗三条线分开，结构更清楚。',
+    tags: ['正畸检查', '复诊处置', '辅助项目'],
   },
   orthodontics: {
-    summary: '乳牙期、替牙期、恒牙期和保持治疗单独成体系。',
+    summary: '乳牙期、替牙期、恒牙期、特殊正畸和保持治疗单独成体系。',
     audience: '明确想做正畸，或想了解不同阶段矫治路径的人。',
-    emphasis: '重点是分期和类型，不再把所有正畸项目混成一串。',
+    emphasis: '重点是按阶段和病例类型拆开，不再把所有正畸项目混成一串。',
     tags: ['阶段矫治', '特殊正畸', '保持治疗'],
   },
   'other-care': {
@@ -223,7 +223,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({projects, onSelectPro
               {group.projects.map(project => {
                 const Icon = iconMap[project.icon] || Sparkles;
                 const note = projectNotes[project.id] || projectNotes['other-care'];
-                const visibleSections = project.sections?.slice(0, 3) || [];
+                const visibleSections = project.sections?.slice(0, project.id === 'orthodontics' ? 5 : 3) || [];
 
                 return (
                   <motion.article

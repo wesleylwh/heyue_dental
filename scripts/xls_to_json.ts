@@ -41,18 +41,18 @@ const taxonomy: TaxonomyModule[] = [
     sections: [
       {
         id: 'clinic-consultation',
-        title: '门诊诊查与方案设计',
-        patterns: [/诊查费|系统检查|治疗设计|初检|正中颌位检查/],
+        title: '门诊诊查与治疗设计',
+        patterns: [/诊查费|系统检查|治疗设计/],
       },
       {
-        id: 'occlusion-measurement',
-        title: '咬合与功能测量',
-        patterns: [/咬合|颌力|下颌运动|轨迹描记|颞颌关节|唾液量|流速|缓冲能力|咬合动度/],
+        id: 'diagnosis-functional',
+        title: '咬合与功能检查',
+        patterns: [/咬合检查|颌力测量检查|下颌运动检查|轨迹描记|颞颌关节|唾液量|流速|缓冲能力|咬合动度/],
       },
       {
         id: 'imaging-model',
-        title: '影像与模型检查',
-        patterns: [/模型制备|记存模型|面颌像|内镜|RVG|X线|CT|CBCT|曲面体层|测色仪|菌斑|龈沟液/],
+        title: '影像与专项检查',
+        patterns: [/模型制备|记存模型|面颌像|内镜|RVG|X线|CT|CBCT|曲面体层|测色仪|菌斑|龈沟液|牙髓活力检查|根管长度测量|错颌畸形初检|错颌畸形正中颌位检查/],
       },
     ],
   },
@@ -61,13 +61,18 @@ const taxonomy: TaxonomyModule[] = [
     sections: [
       {
         id: 'periodontal-cleaning',
-        title: '洁治与龈下处理',
-        patterns: [/洁治|龈下刮治|牙面光洁|根面平整|超声根面平整/],
+        title: '洁牙与基础处理',
+        patterns: [/洁治|牙面光洁|保护剂塞治|冠周炎局部治疗|坏死性龈炎局部清创|干槽症换药/],
+      },
+      {
+        id: 'periodontal-root',
+        title: '刮治与根面处理',
+        patterns: [/龈下刮治|根面平整|超声根面平整/],
       },
       {
         id: 'periodontal-surgery',
         title: '牙龈与牙周手术',
-        patterns: [/冠周炎|翻瓣术|切除术|成形术|牙周固定|去除牙周固定|保护剂塞治|坏死性龈炎|干槽症换药/],
+        patterns: [/翻瓣术|切除术|成形术|牙周固定|去除牙周固定/],
       },
     ],
   },
@@ -77,12 +82,17 @@ const taxonomy: TaxonomyModule[] = [
       {
         id: 'surgery-extraction',
         title: '拔牙与阻生牙',
-        patterns: [/拔除术|拔牙|阻生牙|智齿|搔刮术|牙槽骨修整|龈瓣整形/],
+        patterns: [/拔除术|拔牙|阻生牙|智齿/],
+      },
+      {
+        id: 'surgery-wound',
+        title: '创面与骨面处理',
+        patterns: [/搔刮术|牙槽骨修整|龈瓣整形|动力钻/],
       },
       {
         id: 'surgery-oral',
         title: '切开引流与外科处置',
-        patterns: [/病灶刮除|止血|切开引流|活检|动力钻|关节复位|开窗助萌|正畸牙开窗术|烧伤清创|牙槽骨修整/],
+        patterns: [/病灶刮除|止血|切开引流|活检|关节复位|开窗助萌|正畸牙开窗术|烧伤清创/],
       },
     ],
   },
@@ -156,12 +166,12 @@ const taxonomy: TaxonomyModule[] = [
     sections: [
       {
         id: 'ortho-support-check',
-        title: '检查与制备',
+        title: '正畸检查与制备',
         patterns: [/带环制备|颌导板制备|特殊要求颌导板|导合板|外科引导合板/],
       },
       {
         id: 'ortho-support-follow',
-        title: '复诊与辅助处置',
+        title: '正畸复诊与辅助处置',
         patterns: [/复诊处置|舌侧矫正器加收|拆除固定装置|调颌|调磨颌垫|全牙列颌垫固定术|根牵引|结扎固定术|制戴活动矫正器/],
       },
     ],
@@ -214,7 +224,8 @@ const taxonomy: TaxonomyModule[] = [
 ];
 
 const directModuleMatches: Array<{moduleId: string; patterns: RegExp[]}> = [
-  {moduleId: 'orthodontics', patterns: [/乳牙期|替牙期|恒牙期|错颌|功能矫治器治疗|固定矫治器治疗|保持器治疗|牙周病伴错颌|牙合创伤|颜面不对称|阻生磨牙竖直/]},
+  {moduleId: 'diagnosis', patterns: [/诊查费|系统检查|治疗设计|咬合检查|颌力测量检查|下颌运动检查|轨迹描记|口腔模型制备|记存模型制备|面颌像检查|口腔内镜检查|牙髓活力检查|根管长度测量|口腔X线一次成像|龈沟液量测定|咬合动度测定|菌斑检查|菌斑微生物检测|颞颌关节系统检查设计|唾液量|流速|缓冲能力检查|错颌畸形初检|错颌畸形正中颌位检查|测色仪检查|CT|CBCT|曲面体层成像/]},
+  {moduleId: 'orthodontics', patterns: [/乳牙期|替牙期|恒牙期|安氏|功能矫治器治疗|固定矫治器治疗|保持器治疗|牙周病伴错颌|牙合创伤|颜面不对称|阻生磨牙竖直|正畸治疗/]},
   {moduleId: 'ortho-support', patterns: [/复诊处置|带环制备|颌导板制备|调颌|调磨颌垫|拆除固定装置|结扎固定术|根牵引|舌侧矫正器|引导合板|全牙列颌垫固定术|制戴活动矫正器/]},
   {moduleId: 'removable-restoration', patterns: [/义齿|活动桥|拆冠桥|拆铸造冠|拆桩|加焊|崩瓷修理|调改义齿|颌关系记录|加人工牙|加卡环|基托|连接杆|垫颌|磁性固位体|镀金加工|铸造加工|配金加工|锤造冠|加装饰面|加颌支托|加铸颌面|增加加固装置|塑料颌面加高咬合|黄金材料加工|附着体增换|弹性假牙龈/]},
   {moduleId: 'fixed-restoration', patterns: [/固定桥|粘结桥|全冠|嵌体|咬合重建|固定修复计算机辅助设计|粘结$/]},
@@ -222,7 +233,6 @@ const directModuleMatches: Array<{moduleId: string; patterns: RegExp[]}> = [
   {moduleId: 'endodontics', patterns: [/根管|牙髓|开髓|失活|摘除术|充填|祛龋|盖髓术|活髓切断术|髓腔|瘘管|劈裂牙|纵折固定|桩钉|牙体缺损|橡皮障|诱导成形|钙化桥|显微镜下根尖屏障|前牙美容修复术|干髓术/]},
   {moduleId: 'surgery', patterns: [/拔除术|拔牙|阻生牙|智齿|病灶刮除|活检|切开引流|止血|关节复位|动力钻|开窗助萌|正畸牙开窗术|牙槽骨修整|牙槽骨烧伤清创/]},
   {moduleId: 'periodontal', patterns: [/洁治|龈下刮治|牙龈|牙周固定|根面平整|坏死性龈炎|冠周炎|干槽症换药|牙面光洁/]},
-  {moduleId: 'diagnosis', patterns: [/诊查费|检查|设计|测量|影像|模型|内镜|X线|CT|CBCT|曲面体层|测色仪|菌斑|龈沟液|轨迹描记|咬合动度/]},
   {moduleId: 'other-care', patterns: [/激光口内治疗|脱色术|漂白术|局部浸润麻醉|不良修复体拆除/]},
 ];
 
