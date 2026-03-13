@@ -16,7 +16,7 @@ npm i
 npm run dev
 ```
 
-浏览器打开开发地址（默认）：`http://localhost:3000`
+浏览器打开开发地址（默认）：`http://localhost:3001`
 
 ## 从 Excel 导入“服务项目”数据
 

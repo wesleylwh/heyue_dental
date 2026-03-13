@@ -15,7 +15,7 @@ npm install
 npm run dev
 ```
 
-开发地址默认是 `http://localhost:3000`，同一局域网内的平板也可以通过你电脑的 IP 访问。
+开发地址默认是 `http://localhost:3001`，同一局域网内的平板也可以通过你电脑的 IP 访问。
 
 ## 生产构建
 

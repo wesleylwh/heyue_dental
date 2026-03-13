@@ -153,10 +153,14 @@
 - Pages 发布方式：`GitHub Actions`
 - 自动部署工作流：`.github/workflows/deploy-pages.yml`
 - 线上地址：`https://wesleylwh.github.io/heyue_dental/`
-- 本地开发端口固定：`3000`
+- 本地开发端口固定：`3001`
   - `npm run dev` 使用 `--strictPort`
-  - 如果 `3000` 被占用，应直接报错并先清理占用进程，不允许静默切到 `3001/3002`
-  - PWA 已配置：
+  - 如果 `3001` 被占用，应直接报错并先清理占用进程，不允许静默切到其他端口
+  - 可用命令：`npm run dev:free`，用于释放占用 `3001` 的监听进程
+- 一键同步命令：`npm run pages:sync`
+  - 实际流程：`npm run build` -> `git add -A` -> `git commit` -> `git push origin main`
+  - GitHub Pages 最终由 push `main` 后的 Actions 自动部署
+- PWA 已配置：
   - `public/manifest.webmanifest`
   - `public/sw.js`
   - `public/icons/*`
@@ -223,6 +227,10 @@
   - 命令：`npm run build`
   - 目的：确保 `dist/` 始终是最新可发布版本，便于同步到 GitHub Pages
   - 这条规则适用于页面改动、服务项目数据改动、导入脚本改动，以及任何会影响线上展示结果的更新
+- 从现在开始，每次“更新 / 优化 / 修改”完成后，默认执行一次 GitHub Pages 同步：
+  - 命令：`npm run pages:sync`
+  - 适用范围：页面优化、文案修改、服务项目调整、数据导入结果变更、样式修改、结构调整
+  - 目标：保证本地改动、`dist/` 产物、GitHub 仓库、GitHub Pages 保持一致
 - 完成代码修改后，默认一起提交并 push，保持仓库状态和 Memory 同步
 
 ## Next Suggested Targets
