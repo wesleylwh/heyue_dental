@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'motion/react';
-import { PROJECTS } from '../constants';
+import { Project } from '../types';
 import { Zap, Smile, Sparkles, Stethoscope, Scissors, Heart, ChevronRight, List } from 'lucide-react';
 
 const iconMap: Record<string, any> = {
@@ -13,11 +13,12 @@ const iconMap: Record<string, any> = {
 };
 
 interface ProjectsPageProps {
+  projects: Project[];
   onSelectProject: (id: string) => void;
 }
 
-export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onSelectProject }) => {
-  const [activeCategory, setActiveCategory] = useState(PROJECTS[0].id);
+export const ProjectsPage: React.FC<ProjectsPageProps> = ({ projects, onSelectProject }) => {
+  const [activeCategory, setActiveCategory] = useState(projects[0]?.id || '');
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const scrollToCategory = (id: string) => {
@@ -37,7 +38,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onSelectProject }) =
           <h2 className="text-2xl font-bold">服务目录</h2>
         </div>
         <nav className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 no-scrollbar">
-          {PROJECTS.map((project, i) => (
+          {projects.map((project, i) => (
             <button
               key={project.id}
               onClick={() => scrollToCategory(project.id)}
@@ -64,7 +65,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onSelectProject }) =
         </header>
 
         <div className="space-y-20">
-          {PROJECTS.map((project, i) => {
+          {projects.map((project, i) => {
             const Icon = iconMap[project.icon] || Sparkles;
             return (
               <section 
