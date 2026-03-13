@@ -1,116 +1,136 @@
 import React from 'react';
-import { motion } from 'motion/react';
-import { Heart, Users, History, Award } from 'lucide-react';
+import {Award, Heart, History, MapPin, ShieldCheck, Users} from 'lucide-react';
 
 interface AboutPageProps {
   onOpenConsultation: () => void;
 }
 
-export const AboutPage: React.FC<AboutPageProps> = ({ onOpenConsultation }) => {
+export const AboutPage: React.FC<AboutPageProps> = ({onOpenConsultation}) => {
   return (
     <div className="space-y-16 pb-12">
-      <header className="space-y-4">
-        <h1 className="text-6xl font-extrabold text-slate-900 leading-tight">关于禾悦</h1>
-        <p className="text-2xl text-slate-500 max-w-2xl">二十年如一日，只为守护邻里的一口好牙。</p>
+      <header className="grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] lg:items-center">
+        <div className="space-y-5">
+          <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-brand-primary shadow-sm">
+            <History size={16} />
+            关于禾悦
+          </div>
+          <h1 className="text-5xl font-extrabold leading-tight text-slate-900 md:text-6xl">
+            二十多年一直在做一件事，
+            <span className="block text-brand-primary">把看牙这件事讲清楚、做好、做得让人放心。</span>
+          </h1>
+          <p className="max-w-3xl text-2xl leading-10 text-slate-500">
+            禾悦不是突然出现的新品牌，而是一家在社区里慢慢长出来的口腔门诊。我们更在意长期信任，而不是一次性的热闹成交。
+          </p>
+        </div>
+
+        <div className="relative overflow-hidden rounded-[40px] bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-800 p-8 text-white shadow-2xl">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.18),transparent_36%),radial-gradient(circle_at_bottom_left,rgba(16,185,129,0.28),transparent_34%)]" />
+          <div className="relative space-y-8">
+            <div className="flex items-center gap-4">
+              <div className="flex h-16 w-16 items-center justify-center rounded-[24px] bg-white/12 backdrop-blur">
+                <span className="text-3xl font-bold">禾</span>
+              </div>
+              <div>
+                <p className="text-sm uppercase tracking-[0.28em] text-white/55">HEYUE DENTAL</p>
+                <h2 className="mt-1 text-3xl font-bold">社区里的长期口腔伙伴</h2>
+              </div>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[
+                {label: '始于', value: '2002', desc: '从社区诊所一路发展而来'},
+                {label: '关键词', value: '透明 / 温和', desc: '讲清楚，再开始治疗'},
+                {label: '服务方向', value: '家庭口腔', desc: '从儿童到长者都能接住'},
+                {label: '看重', value: '长期维护', desc: '不是一次看完就结束'},
+              ].map(item => (
+                <div key={item.label} className="rounded-[28px] border border-white/12 bg-white/8 p-5 backdrop-blur-sm">
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/55">{item.label}</p>
+                  <p className="mt-3 text-2xl font-bold text-white">{item.value}</p>
+                  <p className="mt-2 text-sm leading-7 text-white/75">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="rounded-[28px] border border-white/12 bg-black/10 p-5 text-base leading-8 text-white/85">
+              我们想传达的不是“设备有多贵”，而是你来到这里，会被认真解释、被耐心对待，也知道下一步为什么这样做。
+            </div>
+          </div>
+        </div>
       </header>
 
-      {/* Story Section */}
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div className="space-y-8">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-primary/10 text-brand-primary rounded-full font-bold">
-            <History size={20} />
-            <span>始于 2002 年</span>
-          </div>
-          <h2 className="text-4xl font-bold text-slate-900 leading-tight">
-            从巷口的小诊所，<br />
-            到社区的“笑容守护者”
-          </h2>
-          <div className="space-y-6 text-xl text-slate-600 leading-relaxed">
+      <section className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)]">
+        <div className="rounded-[40px] border border-slate-100 bg-white p-8 shadow-sm md:p-10">
+          <h2 className="text-4xl font-bold text-slate-900">我们的故事，不靠“高大上”开始</h2>
+          <div className="mt-8 space-y-6 text-xl leading-10 text-slate-600">
             <p>
-              20多年前，钟建国院长在咱们社区的巷口开了第一间只有两张牙椅的小诊所。那时候，没有高大上的数字化设备，靠的是钟院长的一双巧手和一颗真心。
+              20 多年前，钟建国院长在社区附近开出第一间小诊所。那时候设备远没有今天先进，能留下病人的，不是包装，而是耐心、手感和口碑。
             </p>
             <p>
-              “老钟，我这牙又疼了！”“钟医生，孩子该换牙了，您给瞅瞅。”这些亲切的招呼，钟院长听了二十年。他见证了当年换牙的小调皮变成了带着孩子回来看牙的年轻父母，也见证了社区里无数老邻居从“咬不动肉”到“重获好牙”的喜悦。
+              这些年里，很多当年被家长牵着来看牙的孩子，后来成了自己带孩子回来的父母。对一家社区口腔门诊来说，这种“回头”比任何广告都更说明问题。
             </p>
             <p>
-              随着时代发展，禾悦引进了最先进的数字化种植和美学矫正技术，但钟院长的初心从未改变：<span className="text-brand-primary font-bold">“看牙不只是修补，更是关怀。”</span>
+              后来我们把数字化检查、修复和矫正慢慢补齐，但做事方式没有变：先解释清楚，再给建议；先考虑适不适合，再讨论做不做。
             </p>
             <p>
-              在禾悦，我们不推销昂贵的方案，只给您最实在的建议。因为我们知道，我们不仅是医生，更是您的老邻居。
+              我们希望门诊看起来专业，也希望它保留一点邻里感。因为看牙这件事，对很多人来说，安全感和信任感本来就和技术一样重要。
             </p>
           </div>
         </div>
-        <div className="relative">
-          <div className="aspect-[4/5] rounded-[40px] overflow-hidden shadow-2xl">
-            <img 
-              src="https://images.unsplash.com/photo-1629909608135-ca29e0c1e2b0?auto=format&fit=crop&q=80&w=800" 
-              alt="Clinic History" 
-              className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
-            />
-          </div>
-          <div className="absolute -bottom-6 -left-6 bg-white p-8 rounded-[32px] shadow-xl border border-slate-100 max-w-xs">
-            <p className="text-brand-primary font-bold text-4xl mb-2">24年</p>
-            <p className="text-slate-500 font-medium">深耕社区，服务超过 50,000 名邻里</p>
+
+        <div className="rounded-[40px] bg-slate-50 p-8 md:p-10">
+          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">我们坚持的方式</p>
+          <div className="mt-6 space-y-4">
+            {[
+              {icon: MapPin, title: '扎根社区', desc: '不是面向陌生流量，而是服务真正长期生活在附近的人。'},
+              {icon: ShieldCheck, title: '讲清楚再开始', desc: '先让你理解情况，再谈方案，不靠术语制造压力。'},
+              {icon: Heart, title: '轻一点、慢一点', desc: '很多人的牙科焦虑，来自不确定感，我们会尽量把节奏放稳。'},
+            ].map(item => (
+              <div key={item.title} className="rounded-[28px] border border-white bg-white p-5 shadow-sm">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-primary/10 text-brand-primary">
+                    <item.icon size={22} />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900">{item.title}</h3>
+                    <p className="mt-2 text-base leading-8 text-slate-600">{item.desc}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Values */}
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <section className="grid gap-6 md:grid-cols-3">
         {[
-          { icon: Heart, title: '医者仁心', desc: '手法轻柔，像对待家人一样对待每一颗牙。' },
-          { icon: Users, title: '邻里信任', desc: '二十年口碑相传，不靠广告靠疗效。' },
-          { icon: Award, title: '品质质保', desc: '所有材料透明可溯，终身维护承诺。' },
-        ].map((item, i) => (
-          <div key={i} className="bg-white p-10 rounded-[40px] border border-slate-100 shadow-sm space-y-4">
-            <div className="w-16 h-16 bg-brand-primary/10 text-brand-primary rounded-2xl flex items-center justify-center">
-              <item.icon size={32} />
+          {icon: Heart, title: '医者仁心', desc: '不把就诊过程做得冰冷和匆忙，让人愿意放心开口。'},
+          {icon: Users, title: '邻里信任', desc: '很多关系来自长期复诊和家庭转介绍，而不是一次性营销。'},
+          {icon: Award, title: '专业落地', desc: '设备和技术是手段，真正重要的是判断是否适合、执行是否稳定。'},
+        ].map(item => (
+          <div key={item.title} className="rounded-[36px] border border-slate-100 bg-white p-8 shadow-sm">
+            <div className="flex h-16 w-16 items-center justify-center rounded-[24px] bg-brand-primary/10 text-brand-primary">
+              <item.icon size={30} />
             </div>
-            <h3 className="text-2xl font-bold text-slate-900">{item.title}</h3>
-            <p className="text-slate-500 text-lg leading-relaxed">{item.desc}</p>
+            <h3 className="mt-6 text-2xl font-bold text-slate-900">{item.title}</h3>
+            <p className="mt-4 text-lg leading-8 text-slate-500">{item.desc}</p>
           </div>
         ))}
       </section>
 
-      {/* QR Codes Section */}
-      <section className="bg-slate-900 rounded-[40px] p-12 md:p-20 text-white">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <h2 className="text-4xl font-bold">关注我们，获取更多护牙知识</h2>
-            <p className="text-xl text-slate-400">
-              扫码关注我们的公众号或添加客服微信，<br />
-              定期发布社区义诊信息、护牙小贴士及专属优惠。
+      <section className="rounded-[40px] bg-slate-900 p-10 text-white shadow-xl md:p-14">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+          <div>
+            <h2 className="text-4xl font-bold">想先了解门诊和适合自己的方向？</h2>
+            <p className="mt-4 max-w-3xl text-xl leading-9 text-slate-300">
+              可以先从咨询开始，不用急着定项目。把你的困扰告诉我们，我们会按实际情况给你更合适的建议。
             </p>
-            <button 
-              onClick={onOpenConsultation}
-              className="bg-brand-primary text-white px-10 py-4 rounded-2xl font-bold text-lg hover:scale-105 transition-transform"
-            >
-              立即在线咨询
-            </button>
           </div>
-          <div className="flex flex-wrap justify-center gap-12">
-            <div className="text-center space-y-4">
-              <div className="bg-white p-4 rounded-[32px]">
-                <img 
-                  src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=WeChat_Public_Account" 
-                  alt="Official Account"
-                  className="w-32 h-32"
-                />
-              </div>
-              <p className="font-bold">官方公众号</p>
-            </div>
-            <div className="text-center space-y-4">
-              <div className="bg-white p-4 rounded-[32px]">
-                <img 
-                  src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=WeChat_Customer_Service" 
-                  alt="Customer Service"
-                  className="w-32 h-32"
-                />
-              </div>
-              <p className="font-bold">院长助理微信</p>
-            </div>
-          </div>
+          <button
+            onClick={onOpenConsultation}
+            className="rounded-[24px] bg-white px-10 py-5 text-xl font-bold text-slate-900 transition-transform hover:-translate-y-0.5"
+          >
+            立即在线咨询
+          </button>
         </div>
       </section>
     </div>
