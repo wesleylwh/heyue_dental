@@ -2,14 +2,15 @@ import React, {useState} from 'react';
 import {motion} from 'motion/react';
 import {Project} from '../types';
 import {
-  ArrowUpRight,
   ChevronRight,
   Heart,
   ListFilter,
   Scissors,
+  ShieldPlus,
   Smile,
   Sparkles,
   Stethoscope,
+  Syringe,
   Zap,
 } from 'lucide-react';
 
@@ -20,88 +21,108 @@ const iconMap: Record<string, any> = {
   Stethoscope,
   Scissors,
   Heart,
+  ShieldPlus,
+  Syringe,
 };
 
 const projectNotes: Record<
   string,
   {summary: string; audience: string; emphasis: string; tags: string[]}
 > = {
-  cleaning: {
-    summary: '适合第一次来院检查、洗牙保养和基础口腔筛查。',
-    audience: '牙龈出血、口气重、想先做整体检查的人群。',
-    emphasis: '先把问题看清，再决定是否需要进一步治疗。',
-    tags: ['基础筛查', '日常保养', '预防优先'],
+  diagnosis: {
+    summary: '所有就诊路径的入口，先把问题看清楚再决定做什么。',
+    audience: '初次到院、想先检查、想做整体评估的人。',
+    emphasis: '重点不是做项目，而是先完成诊断、影像和方案判断。',
+    tags: ['初诊入口', '影像检查', '治疗设计'],
   },
-  filling: {
-    summary: '围绕牙疼、蛀牙、敏感和保牙治疗展开。',
-    audience: '已经有疼痛、不敢咬东西、冷热刺激明显的人群。',
-    emphasis: '先止痛、再保牙，尽量把复杂治疗留到后一步。',
-    tags: ['疼痛处理', '保牙优先', '修复及时'],
+  periodontal: {
+    summary: '牙龈、牙周、洁治和长期维护都集中在这里。',
+    audience: '牙龈出血、口气重、牙周反复不适的人。',
+    emphasis: '先控制炎症和清洁基础，再谈后续修复和美观。',
+    tags: ['牙龈维护', '洁治刮治', '长期保养'],
   },
-  extraction: {
-    summary: '针对松动牙、智齿和反复发炎等外科问题。',
-    audience: '智齿肿痛、发炎反复、需要拔除风险评估的人群。',
-    emphasis: '重在判断是否需要拔、怎么拔更稳妥。',
-    tags: ['微创处理', '风险评估', '术后护理'],
+  surgery: {
+    summary: '把拔牙、智齿和口腔外科项目收拢在同一模块里。',
+    audience: '智齿肿痛、松动牙、需要创面处理的人。',
+    emphasis: '重在评估风险、处理顺序和术后恢复安排。',
+    tags: ['拔牙评估', '智齿处理', '外科处置'],
   },
-  crown: {
-    summary: '用于缺牙修复、牙冠重建和咀嚼功能恢复。',
-    audience: '缺牙、崩裂、旧修复体不合适或咀嚼不稳的人群。',
-    emphasis: '兼顾功能、美观和后期维护，方案更完整。',
-    tags: ['缺牙修复', '功能重建', '长期维护'],
+  endodontics: {
+    summary: '补牙、保牙、根管治疗都属于这一大块。',
+    audience: '已经牙疼、龋坏、敏感或担心牙髓问题的人。',
+    emphasis: '优先保留天然牙体，再判断修复深度。',
+    tags: ['补牙保牙', '根管治疗', '疼痛处理'],
   },
-  ortho: {
-    summary: '覆盖儿童、青少年到成人的牙齿排齐与笑容改善。',
-    audience: '牙列不齐、咬合不正、想改善笑容观感的人群。',
-    emphasis: '先看脸型和咬合，再定矫正路径，不急着上方案。',
-    tags: ['笑容改善', '咬合评估', '分期规划'],
+  prevention: {
+    summary: '适合儿童和日常口腔预防，不以复杂治疗为主。',
+    audience: '希望提前预防蛀牙、做儿童基础防护的家庭。',
+    emphasis: '把问题挡在前面，比事后治疗更轻松。',
+    tags: ['儿童预防', '防龋护理', '家庭管理'],
   },
-  pediatric: {
-    summary: '以儿童预防、乳牙修复和家庭口腔习惯管理为主。',
-    audience: '担心蛀牙、乳牙问题或希望做儿童早期防护的家庭。',
-    emphasis: '降低孩子看牙恐惧感，比一次性做很多更重要。',
-    tags: ['儿童预防', '家庭陪伴', '轻松就诊'],
+  'fixed-restoration': {
+    summary: '固定桥、全冠、嵌体和咬合重建都在这一组。',
+    audience: '缺损修复、固定修复、美观与功能兼顾的人。',
+    emphasis: '更适合已经明确要做修复方向的人继续往下看。',
+    tags: ['固定修复', '全冠嵌体', '咬合重建'],
   },
-  general: {
-    summary: '用于承接未归入主线项目的补充诊疗服务。',
-    audience: '已经有明确项目名称，希望快速定位对应服务的人群。',
-    emphasis: '作为补充目录看，不建议第一次沟通时从这里开始。',
-    tags: ['补充项目', '目录查询', '扩展服务'],
+  'removable-restoration': {
+    summary: '活动义齿、义齿维修和加工类项目统一在这里。',
+    audience: '有活动义齿需求，或已经戴义齿需要调整的人。',
+    emphasis: '把“做义齿”和“修义齿”放在同一个完整模块里。',
+    tags: ['活动义齿', '维修调整', '加工加改'],
+  },
+  'ortho-support': {
+    summary: '正畸检查、复诊和辅助项目不再混进正式疗程里。',
+    audience: '已经在做正畸，或正在做正畸前准备的人。',
+    emphasis: '让正畸治疗本体和辅助处置拆开，结构更清楚。',
+    tags: ['复诊处置', '检查制备', '辅助项目'],
+  },
+  orthodontics: {
+    summary: '乳牙期、替牙期、恒牙期和保持治疗单独成体系。',
+    audience: '明确想做正畸，或想了解不同阶段矫治路径的人。',
+    emphasis: '重点是分期和类型，不再把所有正畸项目混成一串。',
+    tags: ['阶段矫治', '特殊正畸', '保持治疗'],
+  },
+  'other-care': {
+    summary: '承接激光、漂白和其他不属于主模块的处置。',
+    audience: '有明确项目名称，希望快速定位的人。',
+    emphasis: '作为补充目录使用，不建议第一次咨询时从这里开始。',
+    tags: ['补充处置', '激光漂白', '其他项目'],
   },
 };
 
 const groupConfigs = [
   {
-    id: 'care',
-    title: '日常护理与疼痛处理',
-    description: '先解决“疼不疼、有没有炎症、需不需要进一步治疗”这类高频问题。',
+    id: 'entry',
+    title: '检查与基础治疗',
+    description: '先从诊断、炎症控制和保牙入口进入，更符合真实就诊顺序。',
     tone: 'from-sky-50 via-white to-cyan-50',
     accent: 'text-sky-700',
-    projectIds: ['cleaning', 'filling', 'extraction'],
+    projectIds: ['diagnosis', 'periodontal', 'endodontics', 'prevention'],
   },
   {
-    id: 'restoration',
-    title: '修复与笑容改善',
-    description: '更适合已经有明确诉求，希望恢复功能或整体改善笑容的人群。',
+    id: 'surgery',
+    title: '外科与修复',
+    description: '把拔牙、固定修复和活动义齿修复拆清楚，避免混成“修牙一大类”。',
     tone: 'from-emerald-50 via-white to-teal-50',
     accent: 'text-emerald-700',
-    projectIds: ['crown', 'ortho'],
+    projectIds: ['surgery', 'fixed-restoration', 'removable-restoration'],
   },
   {
-    id: 'family',
-    title: '儿童与家庭照护',
-    description: '用更轻松的方式处理孩子看牙、防蛀和早期干预问题。',
+    id: 'ortho',
+    title: '正畸路径',
+    description: '正畸检查、复诊、辅助项目和正式治疗分开后，路径会清晰很多。',
     tone: 'from-amber-50 via-white to-rose-50',
     accent: 'text-amber-700',
-    projectIds: ['pediatric'],
+    projectIds: ['ortho-support', 'orthodontics'],
   },
   {
-    id: 'more',
-    title: '补充诊疗目录',
-    description: '承接扩展服务项目，适合已经明确知道要找什么项目时查看。',
+    id: 'other',
+    title: '补充处置',
+    description: '把零散项目收口到补充模块里，不再散落在各主模块中。',
     tone: 'from-slate-50 via-white to-slate-100',
     accent: 'text-slate-700',
-    projectIds: ['general'],
+    projectIds: ['other-care'],
   },
 ];
 
@@ -116,9 +137,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({projects, onSelectPro
   const groups = groupConfigs
     .map(group => ({
       ...group,
-      projects: group.projectIds
-        .map(id => projects.find(project => project.id === id))
-        .filter(Boolean) as Project[],
+      projects: group.projectIds.map(id => projects.find(project => project.id === id)).filter(Boolean) as Project[],
     }))
     .filter(group => group.projects.length > 0);
 
@@ -132,27 +151,27 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({projects, onSelectPro
       <header className="space-y-8">
         <div className="inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white px-5 py-2 text-sm font-medium text-slate-600 shadow-sm">
           <ListFilter size={16} className="text-brand-primary" />
-          服务项目总览
+          10 大口腔诊疗业务模块
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(320px,0.7fr)]">
           <div className="space-y-5">
             <h1 className="max-w-4xl text-5xl font-extrabold leading-tight text-slate-900 md:text-6xl">
-              不再把项目堆成一张表，
-              <span className="block text-brand-primary">而是先帮你看清该从哪一类开始。</span>
+              这次不再按字面堆项目，
+              <span className="block text-brand-primary">而是按真实诊疗业务模块把全部服务收进去。</span>
             </h1>
             <p className="max-w-3xl text-xl leading-relaxed text-slate-500">
-              我们把服务项目按就诊意图重新整理成几条清晰路径。先判断自己属于哪一类，再看重点项目，最后进入详情，信息会轻很多。
+              所有服务项目都保留，但被重新整理成更像门诊业务结构的分类方式。先看模块，再看二级分类，最后进入详情，不会再像一张越滚越长的表。
             </p>
           </div>
 
           <div className="rounded-[32px] border border-slate-200 bg-white p-7 shadow-sm">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">浏览建议</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">这次优化的重点</p>
             <div className="mt-5 space-y-4">
               {[
-                '先按分类找方向，不用一上来就看全部细项',
-                '每个项目先看“适合谁”和“重点”',
-                '确实感兴趣，再点进去看完整方案',
+                '服务项目尽量完整包含，不再把大部分内容塞进“其他”',
+                '先按业务模块分一级，再按治疗场景做二级分类',
+                '展示上只先给重点，不把所有条目一次摊平',
               ].map((item, index) => (
                 <div key={item} className="flex items-start gap-4">
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-slate-900 text-sm font-bold text-white">
@@ -178,7 +197,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({projects, onSelectPro
             >
               <div className="text-sm font-semibold">{group.title}</div>
               <div className={`mt-1 text-xs ${activeGroup === group.id ? 'text-white/70' : 'text-slate-400'}`}>
-                {group.projects.length} 个重点项目
+                {group.projects.length} 个模块
               </div>
             </button>
           ))}
@@ -194,21 +213,20 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({projects, onSelectPro
           >
             <div className="mb-8 flex flex-col gap-5 border-b border-slate-200/70 pb-8 lg:flex-row lg:items-end lg:justify-between">
               <div className="space-y-3">
-                <p className={`text-sm font-semibold uppercase tracking-[0.28em] ${group.accent}`}>分类 0{groupIndex + 1}</p>
+                <p className={`text-sm font-semibold uppercase tracking-[0.28em] ${group.accent}`}>路径 0{groupIndex + 1}</p>
                 <h2 className="text-3xl font-bold text-slate-900 md:text-4xl">{group.title}</h2>
                 <p className="max-w-3xl text-lg leading-8 text-slate-600">{group.description}</p>
               </div>
               <div className="rounded-[28px] border border-slate-200/80 bg-white/85 px-5 py-4 text-sm text-slate-500 backdrop-blur">
-                建议先看本类重点，再进入项目详情，不必一次看完全部条目。
+                一级分类决定方向，二级分类负责把明细收整齐。
               </div>
             </div>
 
             <div className="grid gap-6">
               {group.projects.map(project => {
                 const Icon = iconMap[project.icon] || Sparkles;
-                const note = projectNotes[project.id] || projectNotes.general;
-                const visibleItems = project.subItems?.slice(0, 4) || [];
-                const hiddenCount = Math.max((project.subItems?.length || 0) - visibleItems.length, 0);
+                const note = projectNotes[project.id] || projectNotes['other-care'];
+                const visibleSections = project.sections?.slice(0, 3) || [];
 
                 return (
                   <motion.article
@@ -216,7 +234,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({projects, onSelectPro
                     initial={{opacity: 0, y: 20}}
                     whileInView={{opacity: 1, y: 0}}
                     viewport={{once: true, amount: 0.2}}
-                    className="grid gap-6 rounded-[32px] border border-slate-200/80 bg-white p-7 shadow-sm lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)] lg:p-9"
+                    className="grid gap-6 rounded-[32px] border border-slate-200/80 bg-white p-7 shadow-sm lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] lg:p-9"
                   >
                     <div className="space-y-6">
                       <div className="flex items-start gap-5">
@@ -227,7 +245,10 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({projects, onSelectPro
                           <div className="flex flex-wrap items-center gap-3">
                             <h3 className="text-3xl font-bold text-slate-900">{project.title}</h3>
                             <span className="rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-500">
-                              {project.subItems?.length || 0} 项内容
+                              {(project.sections?.length || 0)} 个二级分类
+                            </span>
+                            <span className="rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-500">
+                              {(project.subItems?.length || 0)} 项内容
                             </span>
                           </div>
                           <p className="max-w-2xl text-lg leading-8 text-slate-500">{project.description}</p>
@@ -236,7 +257,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({projects, onSelectPro
 
                       <div className="grid gap-4 md:grid-cols-3">
                         <div className="rounded-[24px] bg-slate-50 px-5 py-4">
-                          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">适合谁</p>
+                          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">适合谁先看</p>
                           <p className="mt-2 text-sm leading-7 text-slate-600">{note.audience}</p>
                         </div>
                         <div className="rounded-[24px] bg-slate-50 px-5 py-4">
@@ -251,10 +272,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({projects, onSelectPro
 
                       <div className="flex flex-wrap gap-3">
                         {note.tags.map(tag => (
-                          <span
-                            key={tag}
-                            className="rounded-full border border-slate-200 px-4 py-2 text-sm font-medium text-slate-600"
-                          >
+                          <span key={tag} className="rounded-full border border-slate-200 px-4 py-2 text-sm font-medium text-slate-600">
                             {tag}
                           </span>
                         ))}
@@ -263,24 +281,28 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({projects, onSelectPro
 
                     <div className="flex h-full flex-col rounded-[28px] bg-slate-50 p-6">
                       <div className="flex items-center justify-between">
-                        <h4 className="text-lg font-bold text-slate-900">优先了解这些</h4>
-                        <ArrowUpRight size={18} className="text-slate-400" />
+                        <h4 className="text-lg font-bold text-slate-900">优先看这些二级分类</h4>
                       </div>
 
                       <div className="mt-5 space-y-3">
-                        {visibleItems.map(item => (
-                          <div
-                            key={item}
-                            className="flex items-center gap-3 rounded-2xl border border-white bg-white px-4 py-3 text-sm text-slate-600"
-                          >
-                            <div className="h-2 w-2 rounded-full bg-brand-primary" />
-                            <span>{item}</span>
+                        {visibleSections.map(section => (
+                          <div key={section.id} className="rounded-2xl border border-white bg-white px-4 py-4">
+                            <div className="flex items-center justify-between gap-4">
+                              <div className="flex items-center gap-3">
+                                <div className="h-2.5 w-2.5 rounded-full bg-brand-primary" />
+                                <span className="font-semibold text-slate-800">{section.title}</span>
+                              </div>
+                              <span className="text-sm text-slate-400">{section.items.length} 项</span>
+                            </div>
+                            <p className="mt-3 text-sm leading-7 text-slate-500">{section.items.slice(0, 2).join(' / ')}</p>
                           </div>
                         ))}
                       </div>
 
-                      {hiddenCount > 0 && (
-                        <p className="mt-4 text-sm text-slate-400">以及另外 {hiddenCount} 项细分内容，可在详情里查看。</p>
+                      {project.sections && project.sections.length > visibleSections.length && (
+                        <p className="mt-4 text-sm text-slate-400">
+                          以及另外 {project.sections.length - visibleSections.length} 个二级分类，进入详情可查看完整内容。
+                        </p>
                       )}
 
                       <button
@@ -289,7 +311,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({projects, onSelectPro
                       >
                         <span>
                           <span className="block text-sm text-white/65">进入详情</span>
-                          <span className="mt-1 block text-lg font-semibold">查看完整方案说明</span>
+                          <span className="mt-1 block text-lg font-semibold">查看完整分类结构</span>
                         </span>
                         <ChevronRight size={22} />
                       </button>
@@ -301,29 +323,6 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({projects, onSelectPro
           </section>
         ))}
       </div>
-
-      <section className="rounded-[40px] bg-slate-900 px-8 py-10 text-white shadow-xl md:px-12 md:py-14">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(280px,0.6fr)] lg:items-end">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-white/50">为什么这样重组</p>
-            <h2 className="mt-4 text-4xl font-bold">先分路径，再谈方案，信息才不会压人。</h2>
-            <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-300">
-              我们把“全部项目一次摊开”改成“按需求进入”。这更适合平板浏览，也更符合真实咨询顺序。
-            </p>
-          </div>
-          <div className="grid gap-4">
-            {[
-              '分类更清楚：先按护理、修复、儿童等方向进入',
-              '重点更明确：每个项目先看适合谁和关键判断',
-              '页面更松弛：减少像清单和表格一样的压迫感',
-            ].map(item => (
-              <div key={item} className="rounded-[24px] border border-white/10 bg-white/5 px-5 py-4 text-base text-slate-200">
-                {item}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   );
 };

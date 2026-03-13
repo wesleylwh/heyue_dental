@@ -18,6 +18,11 @@ export interface Project {
   category: string;
   priceRange: string;
   subItems?: string[];
+  sections?: {
+    id: string;
+    title: string;
+    items: string[];
+  }[];
   details?: {
     comparisons?: { label: string; valueA: string; valueB: string }[];
     process?: string[];

@@ -167,6 +167,34 @@
 - 已重构“服务项目”总览页的信息架构
 - 已重构“服务详情”页的内容层级
 - 已重构“关于我们”页，移除不协调图片表达
+- 已将服务项目从旧的 6+1 展示逻辑切换为 10 个口腔诊疗业务模块
+- 已在服务项目数据层加入二级分类 `sections`
+- 已把导入脚本改为按业务模块和二级分类生成 `public/services.json`
+- 已将首页服务模块概览同步改成新分类口径
+
+## Latest Service Optimization Snapshot
+
+- 当前服务项目一级分类共 10 类：
+  - `diagnosis`
+  - `periodontal`
+  - `surgery`
+  - `endodontics`
+  - `prevention`
+  - `fixed-restoration`
+  - `removable-restoration`
+  - `ortho-support`
+  - `orthodontics`
+  - `other-care`
+- 当前服务项目展示规则：
+  - 总览页先展示一级模块
+  - 每个模块显示二级分类数量和代表内容
+  - 详情页按二级分类展开，不再直接把全部项目铺平成长清单
+- 当前数据结构新增：
+  - `sections[]`
+  - 每个 `section` 包含 `id / title / items`
+- 当前目标不是减少项目，而是：
+  - 项目尽量完整保留
+  - 用分类和层级去降低阅读压力
 
 ## Ongoing Update Rule
 

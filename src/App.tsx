@@ -19,6 +19,10 @@ const sanitizeProject = (project: Project): Project => ({
   ...project,
   priceRange: '',
   subItems: project.subItems?.map(stripPriceText),
+  sections: project.sections?.map(section => ({
+    ...section,
+    items: section.items.map(stripPriceText),
+  })),
   details: project.details
     ? {
         ...project.details,

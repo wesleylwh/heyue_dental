@@ -27,59 +27,135 @@ export const DOCTORS: Doctor[] = [
 
 export const PROJECTS: Project[] = [
   {
-    id: 'cleaning',
-    title: '洗牙 / 检查',
-    description: '定期洁牙，预防牙周疾病。',
+    id: 'diagnosis',
+    title: '挂号 / 诊查 / 基础检查',
+    description: '承接初诊、口腔检查、影像与治疗设计等基础判断环节。',
     icon: 'Sparkles',
     category: 'health',
-    priceRange: '¥99 起',
-    subItems: ['洁牙护理', '口腔检查', '小牙片 / 全景片 / CT检查', '儿童防蛀护理']
+    priceRange: '',
+    subItems: ['普通门诊诊查费', '口腔检查', '影像检查', '治疗设计'],
+    sections: [
+      {id: 'diagnosis-basic', title: '门诊诊查', items: ['普通门诊诊查费', '全口牙病系统检查与治疗设计']},
+      {id: 'diagnosis-imaging', title: '影像与测量', items: ['口腔X线一次成像', 'CT / CBCT / 曲面体层成像']},
+    ],
   },
   {
-    id: 'filling',
-    title: '补牙 / 牙疼',
-    description: '及时修补，远离牙疼困扰。',
+    id: 'periodontal',
+    title: '牙周治疗',
+    description: '围绕洁牙、刮治、牙龈炎症与牙周维护展开。',
     icon: 'Stethoscope',
     category: 'health',
-    priceRange: '¥280 起',
-    subItems: ['蛀牙补牙', '牙齿敏感处理', '急性牙疼处理', '保牙治疗（根管）']
+    priceRange: '',
+    subItems: ['洁治', '龈下刮治', '牙周固定', '根面平整'],
+    sections: [
+      {id: 'periodontal-cleaning', title: '洁治与刮治', items: ['洁治', '龈下刮治', '超声根面平整术']},
+      {id: 'periodontal-gum', title: '牙龈与牙周处理', items: ['牙龈翻瓣术', '牙龈切除术', '牙周固定']},
+    ],
   },
   {
-    id: 'extraction',
-    title: '拔牙 / 智齿',
-    description: '微创拔牙，解决智齿烦恼。',
+    id: 'surgery',
+    title: '牙槽外科 / 拔牙 / 口腔外科',
+    description: '适用于拔牙、智齿、切开引流、创面处理和口腔外科类项目。',
     icon: 'Scissors',
     category: 'health',
-    priceRange: '¥150 起',
-    subItems: ['松动牙拔除', '智齿检查与拔除', '发炎肿痛处理', '拔牙后护理']
+    priceRange: '',
+    subItems: ['前牙拔除术', '阻生牙拔除术', '口内脓肿切开引流术', '口腔活检术'],
+    sections: [
+      {id: 'surgery-extraction', title: '拔牙类', items: ['前牙拔除术', '复杂牙拔除术', '阻生牙拔除术']},
+      {id: 'surgery-oral', title: '口腔外科处置', items: ['口内脓肿切开引流术', '口腔活检术', '颞下颌关节复位']},
+    ],
   },
   {
-    id: 'crown',
-    title: '镶牙 / 牙冠修复',
-    description: '恢复咀嚼功能，重塑美观。',
+    id: 'endodontics',
+    title: '牙体牙髓 / 根管治疗',
+    description: '覆盖补牙、充填、开髓、失活、根管治疗与保牙项目。',
     icon: 'Zap',
-    category: 'missing',
-    priceRange: '¥1,500 起',
-    subItems: ['单颗缺牙修复', '多颗缺牙修复', '牙冠修复', '假牙调整与维护']
+    category: 'health',
+    priceRange: '',
+    subItems: ['简单充填术', '复杂充填术', '根管预备', '显微根管治疗术'],
+    sections: [
+      {id: 'endo-filling', title: '充填与修复', items: ['简单充填术', '复杂充填术', '树脂嵌体修复术']},
+      {id: 'endo-root', title: '根管治疗', items: ['根管预备', '根管充填术', '显微根管治疗术']},
+    ],
   },
   {
-    id: 'ortho',
-    title: '牙齿矫正',
-    description: '排齐牙齿，重拾自信笑容。',
-    icon: 'Smile',
-    category: 'ortho',
-    priceRange: '¥8,800 起',
-    subItems: ['儿童早期矫正检查', '青少年矫正', '成人矫正咨询', '保持器与复诊']
-  },
-  {
-    id: 'pediatric',
-    title: '儿童齿科',
-    description: '呵护乳牙，陪伴孩子健康成长。',
+    id: 'prevention',
+    title: '预防保健 / 儿童口腔',
+    description: '包括防龋、脱敏、窝沟封闭与儿童基础防护项目。',
     icon: 'Heart',
     category: 'health',
-    priceRange: '¥50 起',
-    subItems: ['涂氟', '窝沟封闭', '乳牙补牙', '乳牙预成冠']
-  }
+    priceRange: '',
+    subItems: ['氟防龋治疗', '牙脱敏治疗', '窝沟封闭', '乳牙预成冠修复'],
+    sections: [
+      {id: 'prevention-care', title: '预防保健', items: ['氟防龋治疗', '牙脱敏治疗', '窝沟封闭']},
+      {id: 'prevention-kids', title: '儿童基础处置', items: ['乳牙预成冠修复', '儿童前牙树脂冠修复']},
+    ],
+  },
+  {
+    id: 'fixed-restoration',
+    title: '修复固定类',
+    description: '用于固定桥、全冠、嵌体、咬合重建等固定修复项目。',
+    icon: 'Zap',
+    category: 'missing',
+    priceRange: '',
+    subItems: ['固定桥', '粘结桥', '计算机辅助设计制作全冠', '咬合重建'],
+    sections: [
+      {id: 'fixed-bridge', title: '桥体与固定修复', items: ['固定桥', '粘结桥', '固定修复计算机辅助设计']},
+      {id: 'fixed-cad', title: '冠 / 嵌体 / 咬合', items: ['计算机辅助设计制作全冠', '计算机辅助设计制作嵌体', '咬合重建']},
+    ],
+  },
+  {
+    id: 'removable-restoration',
+    title: '义齿 / 活动修复 / 加工维修',
+    description: '涵盖活动义齿、加牙、重衬、焊接和修复加工维修类项目。',
+    icon: 'Sparkles',
+    category: 'missing',
+    priceRange: '',
+    subItems: ['塑料可摘局部义齿', '即刻义齿', '义齿组织面重衬', '加人工牙'],
+    sections: [
+      {id: 'removable-denture', title: '活动义齿', items: ['塑料可摘局部义齿', '美容义齿', '即刻义齿']},
+      {id: 'removable-repair', title: '维修与加改', items: ['义齿组织面重衬', '加人工牙', '加焊']},
+    ],
+  },
+  {
+    id: 'ortho-support',
+    title: '正畸检查 / 复诊 / 辅助项目',
+    description: '将正畸检查、复诊处置和辅助性项目单独归类，更利于理解。',
+    icon: 'Stethoscope',
+    category: 'ortho',
+    priceRange: '',
+    subItems: ['带环制备', '固定矫治器复诊处置', '拆除固定装置', '调颌'],
+    sections: [
+      {id: 'ortho-support-check', title: '检查与制备', items: ['带环制备', '颌导板制备', '错颌畸形初检']},
+      {id: 'ortho-support-follow', title: '复诊与辅助', items: ['固定矫治器复诊处置', '拆除固定装置', '调颌']},
+    ],
+  },
+  {
+    id: 'orthodontics',
+    title: '正畸治疗',
+    description: '把乳牙期、替牙期、恒牙期、特殊正畸与保持治疗整体整理在一起。',
+    icon: 'Smile',
+    category: 'ortho',
+    priceRange: '',
+    subItems: ['乳牙期正畸', '替牙期正畸', '恒牙期正畸', '正畸保持器治疗'],
+    sections: [
+      {id: 'orthodontics-early', title: '乳牙期 / 替牙期', items: ['乳牙期安氏I类错颌正畸治疗', '替牙期安氏I类错颌活动矫治器正畸治疗']},
+      {id: 'orthodontics-late', title: '恒牙期 / 保持', items: ['恒牙期安氏I类错颌固定矫治器正畸治疗', '正畸保持器治疗']},
+    ],
+  },
+  {
+    id: 'other-care',
+    title: '口腔黏膜 / 激光 / 其他处置',
+    description: '承接激光、漂白、脱色及不便归入主模块的其他处置。',
+    icon: 'Sparkles',
+    category: 'health',
+    priceRange: '',
+    subItems: ['激光口内治疗', '牙脱色术', '牙齿漂白术', '不良修复体拆除'],
+    sections: [
+      {id: 'other-care-laser', title: '激光与漂白', items: ['激光口内治疗', '牙脱色术', '牙齿漂白术']},
+      {id: 'other-care-other', title: '其他处置', items: ['不良修复体拆除']},
+    ],
+  },
 ];
 
 export const CASES: Case[] = [

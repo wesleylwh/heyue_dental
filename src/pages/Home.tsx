@@ -99,8 +99,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenConsultation, onNaviga
       <section className="space-y-8">
         <div className="flex items-end justify-between">
           <div className="space-y-2">
-            <h2 className="text-4xl font-bold text-slate-900">专业服务项目</h2>
-            <p className="text-xl text-slate-500">涵盖全家人的口腔健康需求</p>
+            <h2 className="text-4xl font-bold text-slate-900">10 大服务模块</h2>
+            <p className="text-xl text-slate-500">按口腔诊疗业务重新整理，先分清方向，再看细项</p>
           </div>
           <button 
             onClick={onNavigateToProjects}
@@ -109,7 +109,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenConsultation, onNaviga
             查看全部项目 <ChevronRight size={20} />
           </button>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {PROJECTS.map((project, i) => {
             const Icon = iconMap[project.icon] || Zap;
             return (
@@ -122,7 +122,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenConsultation, onNaviga
                 <div className="w-12 h-12 bg-slate-50 text-brand-primary rounded-2xl flex items-center justify-center mx-auto">
                   <Icon size={24} />
                 </div>
-                <h3 className="font-bold text-slate-900">{project.title.split(' / ')[0]}</h3>
+                <h3 className="font-bold text-slate-900 leading-snug">{project.title.split(' / ')[0]}</h3>
               </motion.button>
             );
           })}
