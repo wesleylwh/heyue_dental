@@ -160,9 +160,6 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({projects, onSelectPro
               先找到适合自己的看牙方向，
               <span className="block text-brand-primary">再看具体项目，会轻松很多。</span>
             </h1>
-            <p className="max-w-3xl text-xl leading-relaxed text-slate-500">
-              我们把服务项目按 10 个口腔诊疗模块整理好。你可以先按需求找方向，再看每一类里包含哪些项目，最后进入详情慢慢了解。
-            </p>
           </div>
 
           <div className="rounded-[32px] border border-slate-200 bg-white p-7 shadow-sm">
