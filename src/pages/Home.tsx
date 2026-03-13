@@ -100,7 +100,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenConsultation, onNaviga
         <div className="flex items-end justify-between">
           <div className="space-y-2">
             <h2 className="text-4xl font-bold text-slate-900">10 大服务模块</h2>
-            <p className="text-xl text-slate-500">按口腔诊疗业务重新整理，先分清方向，再看细项</p>
+            <p className="text-xl text-slate-500">先按需求找方向，再进入具体项目详情</p>
           </div>
           <button 
             onClick={onNavigateToProjects}

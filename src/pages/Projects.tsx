@@ -151,27 +151,27 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({projects, onSelectPro
       <header className="space-y-8">
         <div className="inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white px-5 py-2 text-sm font-medium text-slate-600 shadow-sm">
           <ListFilter size={16} className="text-brand-primary" />
-          10 大口腔诊疗业务模块
+          服务项目导览
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(320px,0.7fr)]">
           <div className="space-y-5">
             <h1 className="max-w-4xl text-5xl font-extrabold leading-tight text-slate-900 md:text-6xl">
-              这次不再按字面堆项目，
-              <span className="block text-brand-primary">而是按真实诊疗业务模块把全部服务收进去。</span>
+              先找到适合自己的看牙方向，
+              <span className="block text-brand-primary">再看具体项目，会轻松很多。</span>
             </h1>
             <p className="max-w-3xl text-xl leading-relaxed text-slate-500">
-              所有服务项目都保留，但被重新整理成更像门诊业务结构的分类方式。先看模块，再看二级分类，最后进入详情，不会再像一张越滚越长的表。
+              我们把服务项目按 10 个口腔诊疗模块整理好。你可以先按需求找方向，再看每一类里包含哪些项目，最后进入详情慢慢了解。
             </p>
           </div>
 
           <div className="rounded-[32px] border border-slate-200 bg-white p-7 shadow-sm">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">这次优化的重点</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">建议这样看</p>
             <div className="mt-5 space-y-4">
               {[
-                '服务项目尽量完整包含，不再把大部分内容塞进“其他”',
-                '先按业务模块分一级，再按治疗场景做二级分类',
-                '展示上只先给重点，不把所有条目一次摊平',
+                '先看自己更像检查、治疗、修复还是正畸需求',
+                '每个模块里再看二级分类，不用一上来就看全部明细',
+                '如果还不确定从哪开始，可以先点最接近自己症状的模块',
               ].map((item, index) => (
                 <div key={item} className="flex items-start gap-4">
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-slate-900 text-sm font-bold text-white">
@@ -218,7 +218,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({projects, onSelectPro
                 <p className="max-w-3xl text-lg leading-8 text-slate-600">{group.description}</p>
               </div>
               <div className="rounded-[28px] border border-slate-200/80 bg-white/85 px-5 py-4 text-sm text-slate-500 backdrop-blur">
-                一级分类决定方向，二级分类负责把明细收整齐。
+                先看这组适不适合你，再进入具体项目详情。
               </div>
             </div>
 
