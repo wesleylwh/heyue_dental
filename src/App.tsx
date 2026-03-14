@@ -86,7 +86,7 @@ export default function App() {
       case 'experts':
         return <ExpertsPage onOpenConsultation={openConsultation} />;
       case 'projects':
-        return <ProjectsPage projects={projectsData} onSelectProject={(id) => setSelectedProjectId(id)} />;
+        return <ProjectsPage projects={projectsData} onSelectProject={(id) => setSelectedProjectId(id)} onOpenConsultation={openConsultation} />;
       case 'cases':
         return <CasesPage onOpenConsultation={openConsultation} />;
       case 'about':

@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Shield, Award, BadgeDollarSign, ScanSearch, Sparkles, Scissors, Zap, Smile, Heart, ChevronRight } from 'lucide-react';
-import { CORE_SERVICE_BOARDS, DOCTORS, IMPLANT_PRICE_GUIDE, SERVICE_PROCESS } from '../constants';
+import { Shield, Award, BadgeDollarSign, Sparkles, Scissors, Zap, Smile, Heart, ChevronRight } from 'lucide-react';
+import { CORE_SERVICE_BOARDS, DOCTORS, SERVICE_PROCESS } from '../constants';
 import { 
   ScanFace, 
   PenTool, 
@@ -21,7 +21,6 @@ const iconMap: Record<string, any> = {
   Smile,
   Heart,
   BadgeDollarSign,
-  ScanSearch,
 };
 
 const serviceBoardIcons: Record<string, any> = {
@@ -183,72 +182,34 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenConsultation, onNaviga
         </div>
       </section>
 
-      {/* Implant Board */}
-      <section className="rounded-[40px] border border-slate-200 bg-white p-6 shadow-sm md:p-8 xl:p-10">
-        <div className="grid gap-8 min-[1200px]:grid-cols-[minmax(0,0.9fr)_minmax(420px,1.1fr)]">
-          <div className="space-y-6">
-            <div className="inline-flex items-center gap-3 rounded-full bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-700">
+      {/* Implant Entry Card */}
+      <section
+        onClick={onNavigateToProjects}
+        className="cursor-pointer rounded-[40px] border border-amber-200 bg-gradient-to-br from-amber-50 via-white to-white p-8 shadow-sm hover:shadow-md transition-shadow group md:p-10"
+      >
+        <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          <div className="space-y-4">
+            <div className="inline-flex items-center gap-2 rounded-full bg-amber-100 px-4 py-2 text-sm font-semibold text-amber-700">
               <BadgeDollarSign size={16} />
-              种植板块
+              数字化种植中心
             </div>
-            <div className="space-y-4">
-              <h2 className="text-4xl font-bold text-slate-900">种植只看品牌与价格，先把预算和定位看明白。</h2>
-              <p className="max-w-2xl text-lg leading-8 text-slate-600">{IMPLANT_PRICE_GUIDE.intro}</p>
-            </div>
-
-            <div className="grid gap-4 sm:grid-cols-3">
-              {IMPLANT_PRICE_GUIDE.crowns.map(item => (
-                <div key={item.name} className="rounded-[28px] bg-slate-50 px-5 py-5">
-                  <p className="text-sm font-semibold text-slate-400">{item.name}</p>
-                  <p className="mt-3 text-2xl font-bold text-slate-900">{item.price}</p>
-                  {item.note && <p className="mt-2 text-sm text-slate-500">{item.note}</p>}
-                </div>
+            <h2 className="text-3xl font-extrabold text-slate-900 md:text-4xl">
+              种植牙品牌对比 · 流程说明 · 价格透明
+            </h2>
+            <p className="text-lg text-slate-500 max-w-2xl leading-8">
+              士卓曼 · 奥齿泰 · 皓圣 · 八维，四大品牌系列和参考价格一次看完，还有种植流程、费用构成完整说明。
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {['品牌对比卡', '种植全流程', '价格构成说明', '额外费用透明', '免费方案设计'].map(tag => (
+                <span key={tag} className="rounded-full border border-amber-200 bg-white px-3 py-1.5 text-sm font-medium text-amber-700">
+                  {tag}
+                </span>
               ))}
-            </div>
-
-            <div className="rounded-[32px] bg-slate-900 px-6 py-6 text-white">
-              <div className="flex items-center gap-3">
-                <ScanSearch size={22} />
-                <h3 className="text-2xl font-bold">按需额外费用</h3>
-              </div>
-              <div className="mt-5 space-y-4">
-                {IMPLANT_PRICE_GUIDE.extras.map(item => (
-                  <div key={item.name} className="flex items-start justify-between gap-4 rounded-[22px] border border-white/10 bg-white/5 px-4 py-4">
-                    <div>
-                      <p className="text-lg font-semibold">{item.name}</p>
-                      {item.note && <p className="mt-1 text-sm text-white/70">{item.note}</p>}
-                    </div>
-                    <span className="shrink-0 text-lg font-bold text-amber-300">{item.price}</span>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
-
-          <div className="rounded-[36px] border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-5 md:p-6">
-            <div className="mb-5 flex items-center justify-between gap-4">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">品牌 / 系列 / 参考价</p>
-                <h3 className="mt-2 text-2xl font-bold text-slate-900">单颗种植价格参考</h3>
-              </div>
-              <span className="rounded-full bg-white px-3 py-2 text-sm font-medium text-slate-500 shadow-sm">以院内检查方案为准</span>
-            </div>
-
-            <div className="space-y-3">
-              {IMPLANT_PRICE_GUIDE.brands.map(item => (
-                <div key={`${item.brand}-${item.series}`} className="grid gap-4 rounded-[26px] border border-white bg-white px-5 py-5 shadow-sm sm:grid-cols-[minmax(0,1fr)_auto]">
-                  <div className="space-y-2">
-                    <div className="flex flex-wrap items-center gap-3">
-                      <h4 className="text-xl font-bold text-slate-900">{item.brand}</h4>
-                      <span className="rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-500">{item.series}</span>
-                    </div>
-                    <p className="text-sm text-slate-500">对应牙冠：{item.crown}</p>
-                  </div>
-                  <div className="flex items-center">
-                    <span className="text-2xl font-extrabold text-brand-primary">{item.price}</span>
-                  </div>
-                </div>
-              ))}
+          <div className="shrink-0">
+            <div className="inline-flex items-center gap-2 rounded-[20px] bg-amber-500 px-7 py-4 text-lg font-bold text-white shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform">
+              查看完整种植说明 <ChevronRight size={20} />
             </div>
           </div>
         </div>

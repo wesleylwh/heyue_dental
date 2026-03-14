@@ -248,6 +248,96 @@ export const IMPLANT_PRICE_GUIDE = {
   ],
 };
 
+export const IMPLANT_PROCESS = [
+  {
+    step: '01',
+    title: '数字化检查',
+    desc: 'CBCT 三维扫描，精准评估骨量和神经位置，制定个性化种植方案。',
+    duration: '1 次就诊',
+  },
+  {
+    step: '02',
+    title: '微创植入',
+    desc: '局部麻醉下，利用数字化导板精准植入种植体，创伤小，恢复快。',
+    duration: '1–2 小时',
+  },
+  {
+    step: '03',
+    title: '安心愈合',
+    desc: '等待种植体与牙槽骨骨结合。亲水款约 3–4 个月，普通款 3–6 个月。',
+    duration: '3–6 个月',
+  },
+  {
+    step: '04',
+    title: '牙冠修复',
+    desc: '口扫取模，制作与天然牙高度相似的全瓷牙冠，恢复咀嚼功能和美观。',
+    duration: '2–3 周制作',
+  },
+  {
+    step: '05',
+    title: '定期维护',
+    desc: '完成后定期复查，保持种植牙长期稳固，建议每 6 个月检查一次。',
+    duration: '长期',
+  },
+];
+
+export const IMPLANT_BRANDS = [
+  {
+    brand: '士卓曼 ITI',
+    country: '瑞士',
+    flag: '🇨🇭',
+    tagline: '全球种植体销量领先品牌',
+    features: ['亲水表面技术', '愈合周期短', '骨结合率高', '适合糖尿病 / 高龄患者'],
+    accent: 'from-blue-50 to-white',
+    border: 'border-blue-100',
+    tagColor: 'bg-blue-50 text-blue-700',
+    series: [
+      {name: '非亲水标准款', price: '7,800 - 8,800 / 颗', crown: '国产全瓷冠', note: '稳定可靠，性价比高'},
+      {name: '亲水款 SLA Active', price: '10,000 - 12,000 / 颗', crown: '进口全瓷冠', note: '愈合期缩短约 40%，高要求人群首选'},
+    ],
+  },
+  {
+    brand: '奥齿泰 Osstem',
+    country: '韩国',
+    flag: '🇰🇷',
+    tagline: '亚洲市场临床口碑品牌',
+    features: ['初期稳定性强', '适合亚洲人骨质', '性价比突出', '临床案例丰富'],
+    accent: 'from-emerald-50 to-white',
+    border: 'border-emerald-100',
+    tagColor: 'bg-emerald-50 text-emerald-700',
+    series: [
+      {name: 'GS / TS 标准款', price: '4,250 - 5,000 / 颗', crown: '国产全瓷冠', note: '临床验证稳定，多数患者首选'},
+      {name: 'MS 高端款', price: '5,500 - 6,500 / 颗', crown: '国产全瓷冠', note: '升级表面处理，骨结合表现更优'},
+    ],
+  },
+  {
+    brand: '皓圣 Hiossen',
+    country: '美国',
+    flag: '🇺🇸',
+    tagline: '即拔即种场景首选',
+    features: ['锥形设计', '即拔即种', '前牙美学修复', '初期稳定性佳'],
+    accent: 'from-amber-50 to-white',
+    border: 'border-amber-100',
+    tagColor: 'bg-amber-50 text-amber-700',
+    series: [
+      {name: 'ET 标准款', price: '6,800 - 7,800 / 颗', crown: '国产全瓷冠', note: '适合拔牙后立即种植'},
+    ],
+  },
+  {
+    brand: '八维 8plant',
+    country: '韩国',
+    flag: '🇰🇷',
+    tagline: '多颗种植入门首选',
+    features: ['价格友好', '性能稳定', '适合多颗缺牙', '基础种植方案'],
+    accent: 'from-slate-50 to-white',
+    border: 'border-slate-200',
+    tagColor: 'bg-slate-100 text-slate-600',
+    series: [
+      {name: 'BX 基础款', price: '3,600 - 4,600 / 颗', crown: '国产全瓷冠', note: '适合预算有限或多颗种植患者'},
+    ],
+  },
+];
+
 export const SERVICE_PROCESS = [
   {
     title: '数字化检查',
