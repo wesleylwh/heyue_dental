@@ -86,101 +86,125 @@ export const ImplantDetailPage: React.FC<ImplantDetailPageProps> = ({onBack, onO
       </section>
 
       {/* 2. 品牌价格 */}
-      <section className="space-y-6">
+      <section className="space-y-10">
         <h2 className="text-3xl font-bold text-slate-900">品牌与价格</h2>
-        <div className="grid gap-5 md:grid-cols-2">
-          {IMPLANT_BRANDS.map((brand, i) => (
-            <motion.div
-              key={brand.brand}
-              initial={{opacity: 0, y: 12}}
-              animate={{opacity: 1, y: 0}}
-              transition={{delay: i * 0.07}}
-              className="rounded-[32px] bg-white border border-slate-200 p-7 space-y-5"
-            >
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xl">{brand.flag}</span>
-                  <span className="text-sm text-slate-400 font-medium">{brand.country} · {brand.tagline}</span>
+
+        {/* 2a. 品牌对比一览 */}
+        <div className="space-y-4">
+          <h3 className="text-xl font-bold text-slate-700">品牌对比一览</h3>
+          <div className="grid gap-5 md:grid-cols-2">
+            {IMPLANT_BRANDS.map((brand, i) => (
+              <motion.div
+                key={brand.brand}
+                initial={{opacity: 0, y: 12}}
+                animate={{opacity: 1, y: 0}}
+                transition={{delay: i * 0.07}}
+                className={`rounded-[32px] bg-gradient-to-br ${brand.accent} border ${brand.border} p-7 space-y-5`}
+              >
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-xl">{brand.flag}</span>
+                    <span className="text-sm text-slate-400 font-medium">{brand.country} · {brand.tagline}</span>
+                  </div>
+                  <h4 className="text-2xl font-extrabold text-slate-900">{brand.brand}</h4>
                 </div>
-                <h4 className="text-2xl font-extrabold text-slate-900">{brand.brand}</h4>
-              </div>
 
-              <div className="flex flex-wrap gap-2">
-                {brand.features.map(f => (
-                  <span key={f} className="rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-600">
-                    {f}
-                  </span>
-                ))}
-              </div>
+                <div className="flex flex-wrap gap-2">
+                  {brand.features.map(f => (
+                    <span key={f} className={`rounded-full ${brand.tagColor} px-3 py-1 text-sm font-medium`}>
+                      {f}
+                    </span>
+                  ))}
+                </div>
 
-              <div className="space-y-3">
-                {brand.series.map(s => (
-                  <div key={s.name} className="rounded-[22px] bg-slate-50 px-5 py-4">
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="space-y-1">
-                        <p className="font-semibold text-slate-800">{s.name}</p>
-                        <p className="text-sm text-slate-400">牙冠：{s.crown}</p>
-                        {s.note && <p className="text-sm text-slate-500 leading-6">{s.note}</p>}
+                <div className="space-y-3">
+                  {brand.series.map(s => (
+                    <div key={s.name} className="rounded-[22px] bg-white/70 px-5 py-4">
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="space-y-1">
+                          <p className="font-semibold text-slate-800">{s.name}</p>
+                          <p className="text-sm text-slate-400">牙冠：{s.crown}</p>
+                          {s.note && <p className="text-sm text-slate-500 leading-6">{s.note}</p>}
+                        </div>
+                        <p className="shrink-0 text-xl font-extrabold text-slate-900">{s.price}</p>
                       </div>
-                      <p className="shrink-0 text-xl font-extrabold text-slate-900">{s.price}</p>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-        <p className="text-sm text-slate-400 flex items-center gap-1.5">
-          <Info size={13} /> 以上价格为参考区间，以院内实际检查方案为准。
-        </p>
-
-        {/* 费用说明 */}
-        <div className="grid gap-5 md:grid-cols-2 mt-2">
-          <div className="rounded-[32px] bg-white border border-slate-200 p-7 space-y-5">
-            <div className="flex items-center gap-3">
-              <CheckCircle2 size={20} className="text-emerald-500" />
-              <h3 className="text-xl font-bold text-slate-900">单颗种植通常包含</h3>
-            </div>
-            <div className="space-y-2">
-              {[
-                {item: '种植体', note: '品牌原厂，含植入操作'},
-                {item: '基台', note: '原厂配套'},
-                {item: '全瓷牙冠', note: '国产 / 进口可选'},
-                {item: '基础手术费', note: '麻醉、消毒、操作'},
-              ].map(({item, note}) => (
-                <div key={item} className="flex items-center gap-3 rounded-[18px] bg-slate-50 px-4 py-3">
-                  <span className="w-5 h-5 shrink-0 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold">✓</span>
-                  <div className="flex items-baseline gap-2">
-                    <p className="font-semibold text-slate-900">{item}</p>
-                    <p className="text-sm text-slate-400">{note}</p>
-                  </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-            <p className="text-xs text-slate-400">不含骨增量等附加项目。</p>
+              </motion.div>
+            ))}
           </div>
+          <p className="text-sm text-slate-400 flex items-center gap-1.5">
+            <Info size={13} /> 价格为单颗参考区间（含种植体 + 基台 + 牙冠 + 手术费），以院内实际方案为准。
+          </p>
+        </div>
 
-          <div className="rounded-[32px] bg-white border border-slate-200 p-7 space-y-5">
-            <div className="flex items-center gap-3">
-              <PlusCircle size={20} className="text-amber-500" />
-              <h3 className="text-xl font-bold text-slate-900">按需附加费用</h3>
-            </div>
-            <div className="space-y-2">
-              {IMPLANT_PRICE_GUIDE.extras.map(item => (
-                <div key={item.name} className="flex items-start justify-between gap-3 rounded-[18px] bg-slate-50 px-4 py-3">
+        {/* 2b. 价格构成说明 */}
+        <div className="space-y-4">
+          <h3 className="text-xl font-bold text-slate-700">价格构成说明</h3>
+          <div className="grid gap-4 md:grid-cols-2">
+            {IMPLANT_PRICE_GUIDE.components.map((comp, i) => (
+              <div key={comp.name} className="rounded-[28px] bg-white border border-slate-200 p-6 space-y-3">
+                <div className="flex items-center gap-3">
+                  <span className="w-8 h-8 rounded-full bg-emerald-500 text-white text-sm font-bold flex items-center justify-center shrink-0">{i + 1}</span>
                   <div>
-                    <p className="font-semibold text-slate-900">{item.name}</p>
-                    {item.note && <p className="text-sm text-slate-400 mt-0.5">{item.note}</p>}
+                    <p className="font-bold text-slate-900">{comp.name}</p>
+                    <p className="text-sm text-slate-400">{comp.note}</p>
                   </div>
-                  <span className="shrink-0 font-bold text-slate-700">{item.price}</span>
                 </div>
-              ))}
-              <div className="rounded-[18px] bg-slate-50 px-4 py-3">
-                <p className="font-semibold text-slate-900">个性化基台 / 软组织处理</p>
-                <p className="text-sm text-slate-400 mt-0.5">根据骨量情况由医生判断</p>
+                <div className="space-y-2">
+                  {comp.items.map(item => (
+                    <div key={item.label} className="flex items-center justify-between rounded-[16px] bg-slate-50 px-4 py-2.5 gap-3">
+                      <p className="text-sm text-slate-600">{item.label}</p>
+                      <p className="text-sm font-semibold text-slate-900 shrink-0">{item.price}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-            <p className="text-xs text-slate-400">具体附加项目需面诊后确定。</p>
+            ))}
+          </div>
+        </div>
+
+        {/* 2c. 按需附加费用 */}
+        <div className="space-y-4">
+          <h3 className="text-xl font-bold text-slate-700 flex items-center gap-2">
+            <PlusCircle size={20} className="text-amber-500" />
+            按需附加费用
+          </h3>
+          <div className="rounded-[28px] bg-white border border-slate-200 p-6 space-y-3">
+            {IMPLANT_PRICE_GUIDE.extras.map(item => (
+              <div key={item.name} className="flex items-start justify-between gap-4 rounded-[18px] bg-slate-50 px-5 py-3.5">
+                <div>
+                  <p className="font-semibold text-slate-900">{item.name}</p>
+                  {item.note && <p className="text-sm text-slate-400 mt-0.5">{item.note}</p>}
+                </div>
+                <span className="shrink-0 font-bold text-amber-700 bg-amber-50 rounded-full px-3 py-1 text-sm">{item.price}</span>
+              </div>
+            ))}
+            <p className="text-xs text-slate-400 px-2 pt-1">具体附加项目需面诊后确定，不提前捆绑收费。</p>
+          </div>
+        </div>
+
+        {/* 2d. 品牌特点速览 */}
+        <div className="space-y-4">
+          <h3 className="text-xl font-bold text-slate-700">品牌特点速览</h3>
+          <div className="grid gap-4 md:grid-cols-2">
+            {IMPLANT_PRICE_GUIDE.brandFeatures.map((b, i) => (
+              <motion.div
+                key={b.brand}
+                initial={{opacity: 0, y: 10}}
+                animate={{opacity: 1, y: 0}}
+                transition={{delay: i * 0.08}}
+                className={`rounded-[28px] border p-6 space-y-3 ${b.cardColor}`}
+              >
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">{b.flag}</span>
+                  <p className="font-bold text-slate-900 flex-1">{b.brand}</p>
+                  <span className={`rounded-full px-3 py-1 text-sm font-bold shrink-0 ${b.positionColor}`}>{b.position}</span>
+                </div>
+                <p className="text-sm text-slate-600 leading-7">{b.desc}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

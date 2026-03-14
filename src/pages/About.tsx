@@ -117,16 +117,16 @@ export const AboutPage: React.FC<AboutPageProps> = ({onOpenConsultation}) => {
           </p>
         </div>
 
-        <div className="relative overflow-hidden rounded-[40px] bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-800 p-8 text-white shadow-2xl">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.18),transparent_36%),radial-gradient(circle_at_bottom_left,rgba(16,185,129,0.28),transparent_34%)]" />
+        <div className="relative overflow-hidden rounded-[40px] bg-gradient-to-br from-emerald-50 via-white to-teal-50 border border-emerald-100 p-8 shadow-xl">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.10),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(20,184,166,0.08),transparent_40%)]" />
           <div className="relative space-y-8">
             <div className="flex items-center gap-4">
-              <div className="flex h-16 w-16 items-center justify-center rounded-[24px] bg-white/12 backdrop-blur">
-                <span className="text-3xl font-bold">禾</span>
+              <div className="flex h-16 w-16 items-center justify-center rounded-[24px] bg-emerald-500 shadow-lg shadow-emerald-500/20">
+                <span className="text-3xl font-bold text-white">禾</span>
               </div>
               <div>
-                <p className="text-sm uppercase tracking-[0.28em] text-white/55">HEYUE DENTAL</p>
-                <h2 className="mt-1 text-3xl font-bold">社区里的长期口腔伙伴</h2>
+                <p className="text-sm uppercase tracking-[0.28em] text-slate-400">HEYUE DENTAL</p>
+                <h2 className="mt-1 text-3xl font-bold text-slate-900">社区里的长期口腔伙伴</h2>
               </div>
             </div>
 
@@ -137,15 +137,15 @@ export const AboutPage: React.FC<AboutPageProps> = ({onOpenConsultation}) => {
                 {label: '服务方向', value: '家庭口腔', desc: '从儿童到长者都能接住'},
                 {label: '看重', value: '长期维护', desc: '不是一次看完就结束'},
               ].map(item => (
-                <div key={item.label} className="rounded-[28px] border border-white/12 bg-white/8 p-5 backdrop-blur-sm">
-                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/55">{item.label}</p>
-                  <p className="mt-3 text-2xl font-bold text-white">{item.value}</p>
-                  <p className="mt-2 text-sm leading-7 text-white/75">{item.desc}</p>
+                <div key={item.label} className="rounded-[28px] border border-emerald-100 bg-white p-5 shadow-sm">
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">{item.label}</p>
+                  <p className="mt-3 text-2xl font-bold text-slate-900">{item.value}</p>
+                  <p className="mt-2 text-sm leading-7 text-slate-500">{item.desc}</p>
                 </div>
               ))}
             </div>
 
-            <div className="rounded-[28px] border border-white/12 bg-black/10 p-5 text-base leading-8 text-white/85">
+            <div className="rounded-[28px] border border-emerald-100 bg-emerald-50 p-5 text-base leading-8 text-slate-700">
               我们想传达的不是"设备有多贵"，而是你来到这里，会被认真解释、被耐心对待，也知道下一步为什么这样做。
             </div>
           </div>

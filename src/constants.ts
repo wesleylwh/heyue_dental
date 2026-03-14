@@ -1,5 +1,14 @@
 import { Doctor, Project, Case } from './types';
 
+export interface Nurse {
+  id: string;
+  name: string;
+  title: string;
+  image: string;
+  duties: string[];
+  bio: string;
+}
+
 export const DOCTORS: Doctor[] = [
   {
     id: '1',
@@ -10,7 +19,7 @@ export const DOCTORS: Doctor[] = [
     cases: 5000,
     specialties: ['数字化种植', '复杂拔牙', '全口修复'],
     isAvailable: true,
-    bio: '20年社区服务经验，特别有耐心。钟院长常说：“看牙不只是修补，更是关怀。”他手法轻柔，很多怕疼的邻居都点名找他。',
+    bio: '20年社区服务经验，特别有耐心。钟院长常说：”看牙不只是修补，更是关怀。”他手法轻柔，很多怕疼的邻居都点名找他。',
   },
   {
     id: '2',
@@ -21,8 +30,38 @@ export const DOCTORS: Doctor[] = [
     cases: 3000,
     specialties: ['隐形矫正', '青少年矫治', '美学修复'],
     isAvailable: true,
-    bio: '李医生是咱们社区的“笑容魔术师”，手法轻快，小朋友都不怕。她擅长用最简单直观的方式解释复杂的矫正原理。',
-  }
+    bio: '李医生是咱们社区的”笑容魔术师”，手法轻快，小朋友都不怕。她擅长用最简单直观的方式解释复杂的矫正原理。',
+  },
+  {
+    id: '3',
+    name: '陈慧敏',
+    title: '牙体修复 · 牙周科主诊医师',
+    image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=400',
+    experience: 8,
+    cases: 2000,
+    specialties: ['全瓷冠修复', '牙周系统治疗', '根管治疗', '牙齿美白'],
+    isAvailable: false,
+    bio: '陈医生做事仔细，特别擅长和有牙科焦虑的患者沟通。她常说：”把情况说清楚，大多数人就不怕了。”复诊率在诊所里一直名列前茅。',
+  },
+];
+
+export const NURSES: Nurse[] = [
+  {
+    id: 'n1',
+    name: '刘思远',
+    title: '护士长 · 感控 · 椅旁护理',
+    image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&q=80&w=400',
+    duties: ['椅旁四手操作', '消毒灭菌管理', '患者接待', '感控流程监督'],
+    bio: '在诊所工作9年，是院里的”定心丸”。刘护士长对感控流程要求严格，每一件器械的消毒记录都亲自核查。',
+  },
+  {
+    id: 'n2',
+    name: '张梦洁',
+    title: '口腔治疗护士 · 预约管理',
+    image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&q=80&w=400',
+    duties: ['治疗护理配合', '患者预约管理', '术后护理指导', '病历整理'],
+    bio: '张护士声音温柔，很多初诊小朋友进门前都害怕，跟她聊几句就放松了。她负责管理诊所的预约系统，让就诊流程更顺畅。',
+  },
 ];
 
 export const PROJECTS: Project[] = [
@@ -165,22 +204,76 @@ export const PROJECTS: Project[] = [
 ];
 
 export const CASES: Case[] = [
+  // ── 正畸矫正 ──
   {
     id: 'c1',
     category: 'ortho',
-    beforeImage: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=400',
-    afterImage: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80&w=400',
-    label: '30岁邻居，隐形矫正18个月',
-    testimonial: '钟院长技术很好，术后几乎没疼，现在笑起来自信多了。',
+    beforeImage: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=600',
+    afterImage: 'https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?auto=format&fit=crop&q=80&w=600',
+    label: '30岁 · 隐形矫正 18 个月',
+    testimonial: '以前总是不敢开口大笑，现在照镜子都觉得满意。李医生每次复诊都解释得特别清楚，整个过程比我想象中轻松。',
   },
   {
+    id: 'c3',
+    category: 'ortho',
+    beforeImage: 'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&q=80&w=600',
+    afterImage: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600',
+    label: '16岁 · 固定矫正 22 个月',
+    testimonial: '孩子从一开始特别抗拒，但李医生很会跟青少年沟通，现在主动说要定期复查，牙齿也排整齐了，高考前刚好结束。',
+  },
+  // ── 种植中心 ──
+  {
     id: 'c2',
-    category: 'missing',
-    beforeImage: 'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&q=80&w=400',
-    afterImage: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=400',
-    label: '65岁邻居，全口种植，1天用牙',
-    testimonial: '终于能吃排骨了，感觉年轻了十岁！',
-  }
+    category: 'implant',
+    beforeImage: 'https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?auto=format&fit=crop&q=80&w=600',
+    afterImage: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=600',
+    label: '65岁 · 全口种植 · 奥齿泰',
+    testimonial: '终于能吃排骨了，感觉年轻了十岁！钟院长把整个方案讲得特别透明，费用一分不差，没有被坑的感觉。',
+  },
+  {
+    id: 'c4',
+    category: 'implant',
+    beforeImage: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=600',
+    afterImage: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=600',
+    label: '52岁 · 单颗种植 · 士卓曼',
+    testimonial: '之前一直觉得种牙很贵很麻烦，来了才知道流程可以这么顺。数字化导板定位很精准，全程几乎没感觉到疼。',
+  },
+  // ── 牙周 · 洁牙 ──
+  {
+    id: 'c5',
+    category: 'periodontal',
+    beforeImage: 'https://images.unsplash.com/photo-1571772996211-2f02c9727629?auto=format&fit=crop&q=80&w=600',
+    afterImage: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=600',
+    label: '43岁 · 牙周系统治疗 · 3次刮治',
+    testimonial: '牙龈出血好几年，一直拖着没管。陈医生检查完给我逐颗说了情况，刮治三次之后出血明显减少，口气也好了很多。',
+  },
+  // ── 补牙 · 根管 ──
+  {
+    id: 'c6',
+    category: 'endodontics',
+    beforeImage: 'https://images.unsplash.com/photo-1616012480717-b89a5ef50e43?auto=format&fit=crop&q=80&w=600',
+    afterImage: 'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&q=80&w=600',
+    label: '38岁 · 显微根管 + 全瓷冠保护',
+    testimonial: '牙痛到睡不着觉，以为要拔掉了，没想到根管治疗之后牙齿还能用。钟院长说显微镜下看得更清楚，做完真的彻底好了。',
+  },
+  // ── 修复 · 牙冠 ──
+  {
+    id: 'c7',
+    category: 'restoration',
+    beforeImage: 'https://images.unsplash.com/photo-1598970605070-a38a6ccd3a2d?auto=format&fit=crop&q=80&w=600',
+    afterImage: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&q=80&w=600',
+    label: '47岁 · 全瓷冠修复 · 前牙区 4 颗',
+    testimonial: '门牙一直有小缺口很在意，陈医生建议做进口全瓷冠，颜色和形状和真牙一模一样，同事都问我去做了什么。',
+  },
+  // ── 拔牙 · 外科 ──
+  {
+    id: 'c8',
+    category: 'surgery',
+    beforeImage: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&q=80&w=600',
+    afterImage: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80&w=600',
+    label: '24岁 · 双侧阻生智齿微创拔除',
+    testimonial: '拖了两年一直不敢拔，听朋友说这里手法轻柔才来。钟院长分两次拔，每次20分钟左右就完成了，术后第二天就能正常上班。',
+  },
 ];
 
 export const CORE_SERVICE_BOARDS = [
@@ -227,15 +320,81 @@ export const CORE_SERVICE_BOARDS = [
 ];
 
 export const IMPLANT_PRICE_GUIDE = {
-  crowns: [
-    {name: '国产全瓷冠', price: '1,000 - 2,000 元'},
-    {name: '进口全瓷冠', price: '3,000 - 4,000 元', note: '威兰德 / 泽康'},
-    {name: '基础手术费', price: '约 1,500 - 3,000 元', note: '含麻醉、消毒、操作费'},
+  // 费用构成分拆
+  components: [
+    {
+      name: '种植体',
+      note: '核心费用，占比约 50–70%',
+      items: [
+        {label: '士卓曼 ITI（瑞士）', price: '集采后约 4,980–8,000 元/颗'},
+        {label: '奥齿泰（韩国）', price: '集采后约 1,980–3,000 元/颗'},
+        {label: '皓圣（美国）', price: '集采后约 2,980–4,500 元/颗'},
+      ],
+    },
+    {
+      name: '基台',
+      note: '原厂配套',
+      items: [
+        {label: '原厂基台', price: '约 1,000–3,000 元'},
+      ],
+    },
+    {
+      name: '牙冠',
+      note: '国产 / 进口可选',
+      items: [
+        {label: '国产全瓷冠', price: '1,000–2,000 元'},
+        {label: '进口全瓷冠（威兰德 / 泽康）', price: '3,000–4,000 元'},
+      ],
+    },
+    {
+      name: '基础手术费',
+      note: '含麻醉、消毒、操作',
+      items: [
+        {label: '麻醉 + 消毒 + 植入操作', price: '约 1,500–3,000 元'},
+      ],
+    },
   ],
+  // 按需附加费用
   extras: [
-    {name: '术前检查', price: '约 500 - 1,000 元', note: 'CBCT + 口腔检查'},
-    {name: '骨粉 + 骨膜', price: '2,000 - 6,000 元'},
-    {name: '上颌窦提升', price: '3,000 - 8,000 元'},
+    {name: '术前检查', price: '约 500–1,000 元', note: 'CBCT + 口腔检查'},
+    {name: '骨粉 + 骨膜', price: '2,000–6,000 元', note: '骨量不足时使用'},
+    {name: '上颌窦提升', price: '3,000–8,000 元', note: '上颌后牙骨高度不足'},
+    {name: '其他', price: '按实际产生', note: '个性化基台、软组织移植、术后用药等'},
+  ],
+  // 品牌特点速览
+  brandFeatures: [
+    {
+      brand: '士卓曼 ITI',
+      flag: '🇨🇭',
+      position: '高端',
+      positionColor: 'bg-blue-100 text-blue-700',
+      cardColor: 'bg-blue-50 border-blue-100',
+      desc: '亲水表面技术，骨愈合快（3–4 周），长期稳定性强，适合骨条件差、糖尿病、高龄患者。全球种植体销量领先品牌。',
+    },
+    {
+      brand: '奥齿泰 Osstem',
+      flag: '🇰🇷',
+      position: '中端',
+      positionColor: 'bg-emerald-100 text-emerald-700',
+      cardColor: 'bg-emerald-50 border-emerald-100',
+      desc: '微螺纹设计，初期稳定性好，适配亚洲人颌骨，临床应用广泛，是中端市场最主流的选择。',
+    },
+    {
+      brand: '皓圣 Hiossen',
+      flag: '🇺🇸',
+      position: '中高端',
+      positionColor: 'bg-amber-100 text-amber-700',
+      cardColor: 'bg-amber-50 border-amber-100',
+      desc: '锥形设计利于即拔即种，连接稳定，兼顾性价比与性能，适合前牙美学修复与快速修复场景。',
+    },
+    {
+      brand: '八维 8plant',
+      flag: '🇰🇷',
+      position: '入门',
+      positionColor: 'bg-slate-100 text-slate-600',
+      cardColor: 'bg-slate-50 border-slate-200',
+      desc: '性价比高，稳定可靠，适合后牙常规修复和多颗缺牙的基础方案，预算有限时的务实选择。',
+    },
   ],
 };
 
@@ -283,8 +442,8 @@ export const IMPLANT_BRANDS = [
     border: 'border-blue-100',
     tagColor: 'bg-blue-50 text-blue-700',
     series: [
-      {name: '非亲水标准款', price: '7,800 - 8,800 / 颗', crown: '国产全瓷冠', note: '稳定可靠，性价比高'},
-      {name: '亲水款 SLA Active', price: '10,000 - 12,000 / 颗', crown: '进口全瓷冠', note: '愈合期缩短约 40%，高要求人群首选'},
+      {name: '非亲水标准款', price: '7,800–8,800 元', crown: '国产全瓷冠', note: '稳定可靠，性价比高'},
+      {name: '亲水款 SLA Active', price: '10,000–12,000 元', crown: '进口全瓷冠', note: '愈合期缩短约 40%，高要求人群首选'},
     ],
   },
   {
@@ -297,8 +456,8 @@ export const IMPLANT_BRANDS = [
     border: 'border-emerald-100',
     tagColor: 'bg-emerald-50 text-emerald-700',
     series: [
-      {name: 'GS / TS 标准款', price: '4,250 - 5,000 / 颗', crown: '国产全瓷冠', note: '临床验证稳定，多数患者首选'},
-      {name: 'MS 高端款', price: '5,500 - 6,500 / 颗', crown: '国产全瓷冠', note: '升级表面处理，骨结合表现更优'},
+      {name: 'GS / TS 标准款', price: '4,250–5,000 元', crown: '国产全瓷冠', note: '临床验证稳定，多数患者首选'},
+      {name: 'MS 高端款', price: '5,500–6,500 元', crown: '国产全瓷冠', note: '升级表面处理，骨结合表现更优'},
     ],
   },
   {
@@ -311,7 +470,7 @@ export const IMPLANT_BRANDS = [
     border: 'border-amber-100',
     tagColor: 'bg-amber-50 text-amber-700',
     series: [
-      {name: 'ET 标准款', price: '6,800 - 7,800 / 颗', crown: '国产全瓷冠', note: '适合拔牙后立即种植'},
+      {name: 'ET 标准款', price: '6,800–7,800 元', crown: '国产全瓷冠', note: '适合拔牙后立即种植'},
     ],
   },
   {
@@ -324,7 +483,7 @@ export const IMPLANT_BRANDS = [
     border: 'border-slate-200',
     tagColor: 'bg-slate-100 text-slate-600',
     series: [
-      {name: 'BX 基础款', price: '3,600 - 4,600 / 颗', crown: '国产全瓷冠', note: '适合预算有限或多颗种植患者'},
+      {name: 'BX 基础款', price: '3,600–4,600 元', crown: '国产全瓷冠', note: '适合预算有限或多颗种植患者'},
     ],
   },
 ];

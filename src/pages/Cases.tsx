@@ -20,16 +20,20 @@ export const CasesPage: React.FC<CasesPageProps> = ({ onOpenConsultation }) => {
           <p className="text-2xl text-slate-500 max-w-2xl">不看广告看疗效。这里记录了咱们社区邻居们，在禾悦重获健康笑容的真实故事。</p>
         </div>
         
-        <div className="flex bg-white p-3 rounded-[32px] border border-slate-100 shadow-sm">
+        <div className="flex flex-wrap gap-2 bg-white p-3 rounded-[32px] border border-slate-100 shadow-sm">
           {[
-            { id: 'all', label: '全部' },
-            { id: 'ortho', label: '矫正' },
-            { id: 'missing', label: '种植' },
+            { id: 'all',          label: '全部' },
+            { id: 'ortho',        label: '正畸矫正' },
+            { id: 'implant',      label: '种植中心' },
+            { id: 'periodontal',  label: '牙周洁牙' },
+            { id: 'endodontics',  label: '补牙根管' },
+            { id: 'restoration',  label: '修复牙冠' },
+            { id: 'surgery',      label: '拔牙外科' },
           ].map((item) => (
             <button
               key={item.id}
               onClick={() => setFilter(item.id)}
-              className={`px-10 py-4 rounded-2xl font-bold text-xl transition-all ${
+              className={`px-6 py-3 rounded-2xl font-bold text-lg transition-all ${
                 filter === item.id
                   ? 'bg-brand-primary text-white shadow-lg'
                   : 'text-slate-500 hover:bg-slate-50'
@@ -70,7 +74,14 @@ export const CasesPage: React.FC<CasesPageProps> = ({ onOpenConsultation }) => {
               <div className="lg:w-1/2 p-12 flex flex-col justify-center space-y-8">
                 <div>
                   <span className="px-6 py-2 bg-brand-primary/10 text-brand-primary rounded-full font-bold text-xl mb-4 inline-block">
-                    {c.category === 'ortho' ? '美学矫正' : '数字化种植'}
+                    {{
+                      ortho: '正畸矫正',
+                      implant: '数字化种植',
+                      periodontal: '牙周洁治',
+                      endodontics: '补牙根管',
+                      restoration: '修复牙冠',
+                      surgery: '拔牙外科',
+                    }[c.category] ?? c.category}
                   </span>
                   <h3 className="text-4xl font-bold text-slate-900">{c.label}</h3>
                 </div>
