@@ -1,5 +1,5 @@
-const CACHE_NAME = 'heyue-dental-v1';
-const APP_SHELL = ['./', './index.html', './manifest.webmanifest', './services.json'];
+const CACHE_NAME = 'heyue-dental-v2';
+const APP_SHELL = ['./', './index.html', './manifest.webmanifest'];
 
 self.addEventListener('install', event => {
   event.waitUntil(
@@ -49,6 +49,26 @@ self.addEventListener('fetch', event => {
   }
 
   if (url.origin !== self.location.origin) {
+    return;
+  }
+
+  if (url.pathname.endsWith('/services.json') || url.pathname.endsWith('services.json')) {
+    event.respondWith(
+      fetch(request)
+        .then(response => {
+          if (!response || response.status !== 200) {
+            return response;
+          }
+
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(request, copy));
+          return response;
+        })
+        .catch(async () => {
+          const cached = await caches.match(request);
+          return cached || Response.error();
+        }),
+    );
     return;
   }
 

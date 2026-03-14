@@ -43,8 +43,9 @@ export default function App() {
   const openConsultation = () => setIsQRModalOpen(true);
 
   useEffect(() => {
-    const url = new URL('services.json', window.location.href).toString();
-    fetch(url)
+    const url = new URL('services.json', window.location.href);
+    url.searchParams.set('v', '20260314');
+    fetch(url.toString(), {cache: 'no-store'})
       .then(res => {
         if (!res.ok) throw new Error('no services.json');
         return res.json();
@@ -76,9 +77,10 @@ export default function App() {
     switch (activeTab) {
       case 'home':
         return (
-          <HomePage 
-            onOpenConsultation={openConsultation} 
-            onNavigateToProjects={() => setActiveTab('projects')} 
+          <HomePage
+            onOpenConsultation={openConsultation}
+            onNavigateToProjects={() => setActiveTab('projects')}
+            onNavigateToTab={(tab) => setActiveTab(tab)}
           />
         );
       case 'experts':

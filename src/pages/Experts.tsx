@@ -11,8 +11,8 @@ export const ExpertsPage: React.FC<ExpertsPageProps> = ({ onOpenConsultation }) 
   return (
     <div className="space-y-12 pb-12">
       <header>
-        <h1 className="text-4xl font-bold text-slate-900 mb-4">名医墙</h1>
-        <p className="text-xl text-slate-500">汇聚公立名医及资深专家，为您提供高标准的医疗保障。</p>
+        <h1 className="text-4xl font-bold text-slate-900 mb-4">医生团队</h1>
+        <p className="text-xl text-slate-500">分科诊疗，各有所长，放心把问题交给对的医生。</p>
       </header>
 
       <div className="space-y-8">

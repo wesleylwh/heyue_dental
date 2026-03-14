@@ -183,6 +183,71 @@ export const CASES: Case[] = [
   }
 ];
 
+export const CORE_SERVICE_BOARDS = [
+  {
+    id: 'fillings',
+    title: '补牙 / 根管',
+    summary: '蛀牙、冷热敏感、牙痛先看这一类。',
+    highlights: ['简单补牙', '复杂充填', '根管治疗', '显微根管'],
+    accent: 'from-sky-50 to-white',
+    tone: 'text-sky-700',
+  },
+  {
+    id: 'surgery',
+    title: '拔牙 / 外科',
+    summary: '智齿、松动牙、阻生牙和外科处置集中看。',
+    highlights: ['普通拔牙', '复杂拔牙', '阻生牙', '切开引流'],
+    accent: 'from-emerald-50 to-white',
+    tone: 'text-emerald-700',
+  },
+  {
+    id: 'restoration',
+    title: '修复 / 牙冠 / 义齿',
+    summary: '缺损修复、全冠、活动义齿和后期维修都在这里。',
+    highlights: ['全瓷冠', '固定桥', '活动义齿', '义齿维修'],
+    accent: 'from-amber-50 to-white',
+    tone: 'text-amber-700',
+  },
+  {
+    id: 'periodontal',
+    title: '牙周 / 洁牙 / 刮治',
+    summary: '牙龈出血、牙结石、牙周炎先从这块入手。',
+    highlights: ['洁治', '龈下刮治', '根面平整', '牙周维护'],
+    accent: 'from-cyan-50 to-white',
+    tone: 'text-cyan-700',
+  },
+  {
+    id: 'orthodontics',
+    title: '正畸',
+    summary: '儿童早期干预、青少年矫治、成人正畸统一看。',
+    highlights: ['初检评估', '复诊处置', '阶段矫治', '保持治疗'],
+    accent: 'from-rose-50 to-white',
+    tone: 'text-rose-700',
+  },
+];
+
+export const IMPLANT_PRICE_GUIDE = {
+  intro: '种植板块不展开全部术式，只保留品牌、牙冠和常见费用参考，方便快速沟通预算。',
+  brands: [
+    {brand: '瑞士士卓曼 ITI', series: '非亲水标准款', price: '7,800 - 8,800 / 颗', crown: '国产全瓷冠'},
+    {brand: '瑞士士卓曼 ITI', series: '亲水款 SLA Active', price: '10,000 - 12,000 / 颗', crown: '进口全瓷冠'},
+    {brand: '韩国奥齿泰 Osstem', series: 'GS/TS 标准款', price: '4,250 - 5,000 / 颗', crown: '国产全瓷冠'},
+    {brand: '韩国奥齿泰 Osstem', series: 'MS 高端款', price: '5,500 - 6,500 / 颗', crown: '国产全瓷冠'},
+    {brand: '韩国八维 8plant', series: 'BX 基础款', price: '3,600 - 4,600 / 颗', crown: '国产全瓷冠'},
+    {brand: '美国皓圣 Hiossen', series: 'ET 标准款', price: '6,800 - 7,800 / 颗', crown: '国产全瓷冠'},
+  ],
+  crowns: [
+    {name: '国产全瓷冠', price: '1,000 - 2,000 元'},
+    {name: '进口全瓷冠', price: '3,000 - 4,000 元', note: '威兰德 / 泽康'},
+    {name: '基础手术费', price: '约 1,500 - 3,000 元', note: '含麻醉、消毒、操作费'},
+  ],
+  extras: [
+    {name: '术前检查', price: '约 500 - 1,000 元', note: 'CBCT + 口腔检查'},
+    {name: '骨粉 + 骨膜', price: '2,000 - 6,000 元'},
+    {name: '上颌窦提升', price: '3,000 - 8,000 元'},
+  ],
+};
+
 export const SERVICE_PROCESS = [
   {
     title: '数字化检查',

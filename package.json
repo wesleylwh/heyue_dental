@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite --port=3001 --host=0.0.0.0 --strictPort",
     "dev:free": "bash scripts/free-dev-port.sh 3001",
+    "dev:reset": "npm run dev:free && npm run dev",
     "build": "vite build",
     "preview": "vite preview --host=0.0.0.0 --port=4173",
     "clean": "rm -rf dist",

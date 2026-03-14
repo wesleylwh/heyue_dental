@@ -11,9 +11,9 @@ interface SidebarProps {
 const navItems = [
   { id: 'home', icon: Home, label: '首页' },
   { id: 'projects', icon: LayoutGrid, label: '服务项目' },
-  { id: 'experts', icon: Users, label: '专家团' },
-  { id: 'cases', icon: ImageIcon, label: '案例库' },
-  { id: 'about', icon: Info, label: '关于我们' },
+  { id: 'experts', icon: Users, label: '医生团队' },
+  { id: 'cases', icon: ImageIcon, label: '真实案例' },
+  { id: 'about', icon: Info, label: '诊所实力' },
 ];
 
 export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onOpenConsultation }) => {

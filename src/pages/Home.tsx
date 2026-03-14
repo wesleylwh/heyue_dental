@@ -1,18 +1,12 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Shield, Award, Users } from 'lucide-react';
-import { DOCTORS, SERVICE_PROCESS, PROJECTS } from '../constants';
+import { Shield, Award, BadgeDollarSign, ScanSearch, Sparkles, Scissors, Zap, Smile, Heart, ChevronRight } from 'lucide-react';
+import { CORE_SERVICE_BOARDS, DOCTORS, IMPLANT_PRICE_GUIDE, SERVICE_PROCESS } from '../constants';
 import { 
   ScanFace, 
   PenTool, 
   Stethoscope, 
   HeartHandshake, 
-  ChevronRight,
-  Sparkles,
-  Scissors,
-  Zap,
-  Smile,
-  Heart
 } from 'lucide-react';
 
 const iconMap: Record<string, any> = {
@@ -25,19 +19,44 @@ const iconMap: Record<string, any> = {
   Scissors,
   Zap,
   Smile,
-  Heart
+  Heart,
+  BadgeDollarSign,
+  ScanSearch,
+};
+
+const serviceBoardIcons: Record<string, any> = {
+  fillings: Zap,
+  surgery: Scissors,
+  restoration: Sparkles,
+  periodontal: Heart,
+  orthodontics: Smile,
 };
 
 interface HomePageProps {
   onOpenConsultation: () => void;
   onNavigateToProjects: () => void;
+  onNavigateToTab?: (tab: string) => void;
 }
 
-export const HomePage: React.FC<HomePageProps> = ({ onOpenConsultation, onNavigateToProjects }) => {
+const QUICK_ENTRIES = [
+  { label: '缺牙修复', sub: '种植 · 活动义齿', tab: 'projects', icon: Sparkles },
+  { label: '牙齿矫正', sub: '隐形 · 固定矫正', tab: 'projects', icon: Smile },
+  { label: '牙周护理', sub: '洁牙 · 刮治 · 牙龈', tab: 'projects', icon: Heart },
+  { label: '洁牙检查', sub: '基础检查 · 预防', tab: 'projects', icon: Zap },
+  { label: '医生团队', sub: '分科接诊 · 经验丰富', tab: 'experts', icon: ScanFace },
+  { label: '诊所实力', sub: '设备 · 资质 · 保障', tab: 'about', icon: Stethoscope },
+];
+
+export const HomePage: React.FC<HomePageProps> = ({ onOpenConsultation, onNavigateToProjects, onNavigateToTab }) => {
+  const goTab = (tab: string) => {
+    if (tab === 'projects') { onNavigateToProjects(); return; }
+    onNavigateToTab?.(tab);
+  };
+
   return (
     <div className="space-y-16 pb-12">
       {/* Hero Section */}
-      <section className="relative h-[400px] rounded-[40px] overflow-hidden shadow-xl">
+      <section className="relative min-h-[360px] overflow-hidden rounded-[40px] shadow-xl md:min-h-[420px]">
         <img
           src="https://images.unsplash.com/photo-1629909608135-ca29e0c1e2b0?auto=format&fit=crop&q=80&w=1920"
           alt="Clinic Environment"
@@ -70,6 +89,29 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenConsultation, onNaviga
         </div>
       </section>
 
+      {/* 六宫格快捷入口 */}
+      <section className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {QUICK_ENTRIES.map((entry) => {
+          const Icon = entry.icon;
+          return (
+            <motion.button
+              key={entry.label}
+              onClick={() => goTab(entry.tab)}
+              whileHover={{ y: -3 }}
+              className="bg-white rounded-[28px] border border-slate-100 shadow-sm p-6 flex items-center gap-4 text-left hover:shadow-md transition-shadow"
+            >
+              <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                <Icon size={22} />
+              </div>
+              <div>
+                <p className="text-lg font-bold text-slate-900">{entry.label}</p>
+                <p className="text-sm text-slate-500 mt-0.5">{entry.sub}</p>
+              </div>
+            </motion.button>
+          );
+        })}
+      </section>
+
       {/* Advantages */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {[
@@ -95,37 +137,120 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenConsultation, onNaviga
         ))}
       </section>
 
-      {/* Service Categories Summary */}
+      {/* Core Service Boards */}
       <section className="space-y-8">
-        <div className="flex items-end justify-between">
+        <div className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
           <div className="space-y-2">
-            <h2 className="text-4xl font-bold text-slate-900">10 大服务模块</h2>
-            <p className="text-xl text-slate-500">先按需求找方向，再进入具体项目详情</p>
+            <h2 className="text-4xl font-bold text-slate-900">核心服务板块</h2>
+            <p className="max-w-3xl text-xl text-slate-500">把补牙、拔牙、修复、牙周、正畸先拆清楚。种植单独做价格看板，信息更直观。</p>
           </div>
           <button 
             onClick={onNavigateToProjects}
             className="text-brand-primary font-bold text-lg flex items-center gap-2 hover:translate-x-1 transition-transform"
           >
-            查看全部项目 <ChevronRight size={20} />
+            查看完整服务项目 <ChevronRight size={20} />
           </button>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-          {PROJECTS.map((project, i) => {
-            const Icon = iconMap[project.icon] || Zap;
+        <div className="grid gap-5 md:grid-cols-2 min-[1200px]:grid-cols-3">
+          {CORE_SERVICE_BOARDS.map(board => {
+            const Icon = serviceBoardIcons[board.id] || Sparkles;
             return (
-              <motion.button
-                key={project.id}
-                whileHover={{ y: -5 }}
-                onClick={onNavigateToProjects}
-                className="bg-white p-6 rounded-[32px] border border-slate-100 shadow-sm text-center space-y-3"
+              <motion.article
+                key={board.id}
+                whileHover={{y: -4}}
+                className={`rounded-[32px] border border-slate-200 bg-gradient-to-br ${board.accent} p-7 shadow-sm`}
               >
-                <div className="w-12 h-12 bg-slate-50 text-brand-primary rounded-2xl flex items-center justify-center mx-auto">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-900 text-white">
                   <Icon size={24} />
                 </div>
-                <h3 className="font-bold text-slate-900 leading-snug">{project.title.split(' / ')[0]}</h3>
-              </motion.button>
+                <div className="space-y-4">
+                  <div>
+                    <p className={`text-sm font-semibold ${board.tone}`}>核心项目</p>
+                    <h3 className="mt-2 text-2xl font-bold text-slate-900">{board.title}</h3>
+                    <p className="mt-3 text-base leading-7 text-slate-600">{board.summary}</p>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {board.highlights.map(item => (
+                      <span key={item} className="rounded-full border border-slate-200 bg-white/85 px-3 py-2 text-sm font-medium text-slate-600">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.article>
             );
           })}
+        </div>
+      </section>
+
+      {/* Implant Board */}
+      <section className="rounded-[40px] border border-slate-200 bg-white p-6 shadow-sm md:p-8 xl:p-10">
+        <div className="grid gap-8 min-[1200px]:grid-cols-[minmax(0,0.9fr)_minmax(420px,1.1fr)]">
+          <div className="space-y-6">
+            <div className="inline-flex items-center gap-3 rounded-full bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-700">
+              <BadgeDollarSign size={16} />
+              种植板块
+            </div>
+            <div className="space-y-4">
+              <h2 className="text-4xl font-bold text-slate-900">种植只看品牌与价格，先把预算和定位看明白。</h2>
+              <p className="max-w-2xl text-lg leading-8 text-slate-600">{IMPLANT_PRICE_GUIDE.intro}</p>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-3">
+              {IMPLANT_PRICE_GUIDE.crowns.map(item => (
+                <div key={item.name} className="rounded-[28px] bg-slate-50 px-5 py-5">
+                  <p className="text-sm font-semibold text-slate-400">{item.name}</p>
+                  <p className="mt-3 text-2xl font-bold text-slate-900">{item.price}</p>
+                  {item.note && <p className="mt-2 text-sm text-slate-500">{item.note}</p>}
+                </div>
+              ))}
+            </div>
+
+            <div className="rounded-[32px] bg-slate-900 px-6 py-6 text-white">
+              <div className="flex items-center gap-3">
+                <ScanSearch size={22} />
+                <h3 className="text-2xl font-bold">按需额外费用</h3>
+              </div>
+              <div className="mt-5 space-y-4">
+                {IMPLANT_PRICE_GUIDE.extras.map(item => (
+                  <div key={item.name} className="flex items-start justify-between gap-4 rounded-[22px] border border-white/10 bg-white/5 px-4 py-4">
+                    <div>
+                      <p className="text-lg font-semibold">{item.name}</p>
+                      {item.note && <p className="mt-1 text-sm text-white/70">{item.note}</p>}
+                    </div>
+                    <span className="shrink-0 text-lg font-bold text-amber-300">{item.price}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-[36px] border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-5 md:p-6">
+            <div className="mb-5 flex items-center justify-between gap-4">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">品牌 / 系列 / 参考价</p>
+                <h3 className="mt-2 text-2xl font-bold text-slate-900">单颗种植价格参考</h3>
+              </div>
+              <span className="rounded-full bg-white px-3 py-2 text-sm font-medium text-slate-500 shadow-sm">以院内检查方案为准</span>
+            </div>
+
+            <div className="space-y-3">
+              {IMPLANT_PRICE_GUIDE.brands.map(item => (
+                <div key={`${item.brand}-${item.series}`} className="grid gap-4 rounded-[26px] border border-white bg-white px-5 py-5 shadow-sm sm:grid-cols-[minmax(0,1fr)_auto]">
+                  <div className="space-y-2">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <h4 className="text-xl font-bold text-slate-900">{item.brand}</h4>
+                      <span className="rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-500">{item.series}</span>
+                    </div>
+                    <p className="text-sm text-slate-500">对应牙冠：{item.crown}</p>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-2xl font-extrabold text-brand-primary">{item.price}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
