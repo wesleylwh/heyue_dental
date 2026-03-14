@@ -5,9 +5,11 @@ import { HomePage } from './pages/Home';
 import { ExpertsPage } from './pages/Experts';
 import { ProjectsPage } from './pages/Projects';
 import { ProjectDetailPage } from './pages/ProjectDetail';
+import { ImplantDetailPage } from './pages/ImplantDetail';
+import { ServiceDetailPage } from './pages/ServiceDetail';
 import { CasesPage } from './pages/Cases';
 import { AboutPage } from './pages/About';
-import { PROJECTS } from './constants';
+import { PROJECTS, SERVICE_DETAILS } from './constants';
 import { QRModal } from './components/QRModal';
 import type { Project } from './types';
 
@@ -61,7 +63,27 @@ export default function App() {
   }, []);
 
   const renderContent = () => {
+    if (selectedProjectId === 'implant') {
+      return (
+        <ImplantDetailPage
+          onBack={() => setSelectedProjectId(null)}
+          onOpenConsultation={openConsultation}
+        />
+      );
+    }
+
     if (selectedProjectId) {
+      const serviceDetail = SERVICE_DETAILS.find(s => s.id === selectedProjectId);
+      if (serviceDetail) {
+        return (
+          <ServiceDetailPage
+            service={serviceDetail}
+            onBack={() => setSelectedProjectId(null)}
+            onOpenConsultation={openConsultation}
+          />
+        );
+      }
+
       const project = projectsData.find(p => p.id === selectedProjectId);
       if (project) {
         return (

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'heyue-dental-v3';
+const CACHE_NAME = 'heyue-dental-v5';
 const APP_SHELL = ['./', './index.html', './manifest.webmanifest'];
 
 self.addEventListener('install', event => {
