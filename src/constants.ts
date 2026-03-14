@@ -227,15 +227,6 @@ export const CORE_SERVICE_BOARDS = [
 ];
 
 export const IMPLANT_PRICE_GUIDE = {
-  intro: '种植板块不展开全部术式，只保留品牌、牙冠和常见费用参考，方便快速沟通预算。',
-  brands: [
-    {brand: '瑞士士卓曼 ITI', series: '非亲水标准款', price: '7,800 - 8,800 / 颗', crown: '国产全瓷冠'},
-    {brand: '瑞士士卓曼 ITI', series: '亲水款 SLA Active', price: '10,000 - 12,000 / 颗', crown: '进口全瓷冠'},
-    {brand: '韩国奥齿泰 Osstem', series: 'GS/TS 标准款', price: '4,250 - 5,000 / 颗', crown: '国产全瓷冠'},
-    {brand: '韩国奥齿泰 Osstem', series: 'MS 高端款', price: '5,500 - 6,500 / 颗', crown: '国产全瓷冠'},
-    {brand: '韩国八维 8plant', series: 'BX 基础款', price: '3,600 - 4,600 / 颗', crown: '国产全瓷冠'},
-    {brand: '美国皓圣 Hiossen', series: 'ET 标准款', price: '6,800 - 7,800 / 颗', crown: '国产全瓷冠'},
-  ],
   crowns: [
     {name: '国产全瓷冠', price: '1,000 - 2,000 元'},
     {name: '进口全瓷冠', price: '3,000 - 4,000 元', note: '威兰德 / 泽康'},
