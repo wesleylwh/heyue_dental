@@ -8,11 +8,12 @@
     "dev:free": "bash scripts/free-dev-port.sh 3001",
     "dev:reset": "npm run dev:free && npm run dev",
     "build": "vite build",
-    "preview": "vite preview --host=0.0.0.0 --port=4173",
+    "preview": "npm run build && wrangler dev",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
     "data:import": "tsx scripts/xls_to_json.ts",
-    "pages:sync": "bash scripts/sync-pages.sh"
+    "pages:sync": "bash scripts/sync-pages.sh",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "@google/genai": "^1.29.0",
@@ -28,6 +29,7 @@
     "vite": "^6.2.0"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.28.0",
     "@types/express": "^4.17.21",
     "@types/node": "^22.14.0",
     "autoprefixer": "^10.4.21",
@@ -36,6 +38,7 @@
     "typescript": "~5.8.2",
     "vite": "^6.2.0",
     "vite-plugin-pwa": "^1.2.0",
+    "wrangler": "^4.73.0",
     "xlsx": "^0.18.5"
   }
 }

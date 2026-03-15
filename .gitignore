@@ -14,3 +14,8 @@ storage/xls/
 spec.md
 MEMORY.md
 CLAUDE.md
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
