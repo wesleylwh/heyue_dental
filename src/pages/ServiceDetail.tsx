@@ -86,14 +86,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({service, on
 
       {/* 2. 价格参考 */}
       <section className="space-y-6">
-        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-          <h2 className="text-4xl font-bold text-slate-900">价格参考</h2>
-          <div className="flex items-center gap-4 text-sm font-medium">
-            <span className="flex items-center gap-1.5"><span className="inline-block w-3.5 h-3.5 rounded-full bg-emerald-100 border border-emerald-300" />甲 医保甲类</span>
-            <span className="flex items-center gap-1.5"><span className="inline-block w-3.5 h-3.5 rounded-full bg-sky-100 border border-sky-300" />乙 医保乙类</span>
-            <span className="flex items-center gap-1.5"><span className="inline-block w-3.5 h-3.5 rounded-full bg-slate-100 border border-slate-300" />丙 自费</span>
-          </div>
-        </div>
+        <h2 className="text-4xl font-bold text-slate-900">价格参考</h2>
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {service.priceGroups.map((group, gi) => (
             <motion.div
@@ -129,7 +122,7 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({service, on
           ))}
         </div>
         <p className="text-base text-slate-400 flex items-center gap-1.5">
-          <Info size={15} /> 以上价格为参考区间，以院内实际检查方案为准。医保患者实际自付比例请咨询前台。
+          <Info size={15} /> 以上价格为参考区间，含常规耗材及基础操作费。特殊病情或个性化方案以院内实际检查结果为准，欢迎咨询前台。
         </p>
       </section>
 

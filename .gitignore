@@ -9,3 +9,8 @@ coverage/
 storage/xls/
 *.xls
 *.xlsx
+
+# Local-only docs
+spec.md
+MEMORY.md
+CLAUDE.md
